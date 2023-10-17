@@ -13,8 +13,11 @@ A project proposal presented to Acme Robotics for addressing the "Human Detectio
 3. Suryavardhan Reddy CHappidi
 
 ### Phase_0 (Project Proposal)
-|Project Proposal Document|[here](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/Phase0%20-%20Proposal/ENPM808X%20-%20Midterm%20Phase%200%20(Proposal).pdf)|
-|Quad Chart|[here](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/Phase0%20-%20Proposal/QuadChart.png)|
-|UML Diagram|[here](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/UML/UML.png)|
-|UML Activity Diagram|[here](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/UML/ActivityDiagram.png)|  
-|Proposal Video|[here](https://drive.google.com/file/d/10-ACmZfWdRRPJYiRuZzHNGz2BmWI6FlM/view?usp=sharing)|
+| Document           | Link                                                                                         |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
+| Project Proposal Document | [here](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/Phase0%20-%20Proposal/ENPM808X%20-%20Midterm%20Phase%200%20(Proposal).pdf) |
+| Quad Chart                | [here](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/Phase0%20-%20Proposal/QuadChart.png) |
+| UML Diagram               | [here](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/UML/UML.png) |
+| UML Activity Diagram      | [here](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/UML/ActivityDiagram.png) |
+| Proposal Video            | [here](https://drive.google.com/file/d/10-ACmZfWdRRPJYiRuZzHNGz2BmWI6FlM/view?usp=sharing) |
+
