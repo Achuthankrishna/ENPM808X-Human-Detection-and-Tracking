@@ -41,7 +41,6 @@ jobs:
       - name: Install build packages
         run: |
           sudo apt update
-          sudo apt-get install -y doxygen
           sudo apt install -y software-properties-common
           sudo apt install -y doxygen lcov gcovr
           
@@ -52,10 +51,10 @@ jobs:
           cmake --build build/ --clean-first --target all test_coverage
 
       # Upload coverage result to CodeCov
-     - name: Upload coverage reports to Codecov
+      - name: Upload coverage result to CodeCov
         uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           files: ${{github.workspace}}/build/test_coverage.info
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)      
