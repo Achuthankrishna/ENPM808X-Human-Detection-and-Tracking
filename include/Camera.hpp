@@ -1,12 +1,12 @@
 /**
  * @file Camera.hpp
  * @author Vyshnav Achuthan (vyachu07@umd.edu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-10-24
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 #pragma once
 
@@ -22,34 +22,38 @@
 #include <opencv2/highgui.hpp>
 
 using cv;
+
+
 /**
- * @brief Class for getting Camera
- * 
+ * @brief Class for Camera.
+ *
  */
 class Camera{
-    
-    cv::videoCapture video;
-    Mat frame;
-    double<vector> cameraCoord;
-    
+    private:
 
- public:
-    Camera() {
-    //Check if camera is on
-      if (!video.isOpened()) {
-        std::cout << "Camera not ON" << std::endl;
-      }
-    }
-    cv::Mat get_frames() {
-      video >> frame;
-      if (frame.empty()){
-        break;
-      }
-      imshow("Frame", frame);
-      return frame;
-    }
-    ~Camera() {
-      video.release();
-      cv::destroyAllWindows();
-    }
-}
+    cv::VideoCapture get_video;
+    cv::Mat get_frame;
+
+    public:
+
+    /**
+     * @brief Constructor for Camera class
+     *
+     */
+    Camera();
+
+    /**
+     * @brief Destructor for Camera class
+     *
+     */
+    ~Camera();
+
+    /**
+     * @brief Get Frames
+     *
+     * @return cv::Mat
+     */
+    cv::Mat ReadFrame();
+
+};
+
