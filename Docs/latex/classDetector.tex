@@ -1,0 +1,153 @@
+\hypertarget{classDetector}{}\doxysection{Detector Class Reference}
+\label{classDetector}\index{Detector@{Detector}}
+
+
+Class for human detection.  
+
+
+
+
+{\ttfamily \#include $<$detector.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDetector_aa43b3d7bbd4b225855b4bcc93f70b225}{Detector}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{classDetector}{Detector}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDetector_ae16b7bf62f39cb287927d56ca17663d7}{$\sim$\+Detector}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classDetector}{Detector}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDetector_af34132f2a2f332edd1d42971fa2202f3}{load\+\_\+model}} (std\+::string model\+\_\+\+Cfg, std\+::string model\+\_\+\+Wts)
+\begin{DoxyCompactList}\small\item\em Load the human detection model from configuration and weights files. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDetector_a1bf00ccbad1b1ff5a18e9a1d4d3c5bd3}{processing}} (Mat \&frame, const vector$<$ Mat $>$ \&output)
+\begin{DoxyCompactList}\small\item\em Process a frame for human detection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDetector_a74ab3bbad82ca77ff68538512117aaf9}{drawboxes}} (int class\+ID, float con, int left, int right, int bottom, Mat \&frame) vector$<$ Sting $>$ Class\+Names(const Net \&net)
+\begin{DoxyCompactList}\small\item\em Draw bounding boxes for detected humans. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for human detection. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDetector_aa43b3d7bbd4b225855b4bcc93f70b225}\label{classDetector_aa43b3d7bbd4b225855b4bcc93f70b225}} 
+\index{Detector@{Detector}!Detector@{Detector}}
+\index{Detector@{Detector}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{Detector()}{Detector()}}
+{\footnotesize\ttfamily Detector\+::\+Detector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \mbox{\hyperlink{classDetector}{Detector}} object. 
+
+Construct a new \mbox{\hyperlink{classDetector}{Detector}} object.\mbox{\Hypertarget{classDetector_ae16b7bf62f39cb287927d56ca17663d7}\label{classDetector_ae16b7bf62f39cb287927d56ca17663d7}} 
+\index{Detector@{Detector}!````~Detector@{$\sim$Detector}}
+\index{````~Detector@{$\sim$Detector}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{$\sim$Detector()}{~Detector()}}
+{\footnotesize\ttfamily Detector\+::$\sim$\+Detector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor for the \mbox{\hyperlink{classDetector}{Detector}} object. 
+
+Destroy the \mbox{\hyperlink{classDetector}{Detector}} object.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDetector_a74ab3bbad82ca77ff68538512117aaf9}\label{classDetector_a74ab3bbad82ca77ff68538512117aaf9}} 
+\index{Detector@{Detector}!drawboxes@{drawboxes}}
+\index{drawboxes@{drawboxes}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{drawboxes()}{drawboxes()}}
+{\footnotesize\ttfamily void Detector\+::drawboxes (\begin{DoxyParamCaption}\item[{int}]{class\+ID,  }\item[{float}]{con,  }\item[{int}]{left,  }\item[{int}]{right,  }\item[{int}]{bottom,  }\item[{Mat \&}]{frame }\end{DoxyParamCaption}) const \&}
+
+
+
+Draw bounding boxes for detected humans. 
+
+Draw bounding boxes on the input frame using class information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+ID} & Class identifier for the detected human. \\
+\hline
+{\em con} & Confidence score for human detection. \\
+\hline
+{\em left} & Left boundary of the bounding box. \\
+\hline
+{\em right} & Right boundary of the bounding box. \\
+\hline
+{\em bottom} & Bottom boundary of the bounding box. \\
+\hline
+{\em frame} & Frame to draw the bounding box on.\\
+\hline
+\end{DoxyParams}
+Get the class names for human detection from the neural network model.
+
+
+\begin{DoxyParams}{Parameters}
+{\em net} & The neural network model. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of class names for humans.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em class\+ID} & Class identifier for the detected object. \\
+\hline
+{\em con} & Confidence score for detection. \\
+\hline
+{\em left} & Left boundary of the bounding box. \\
+\hline
+{\em right} & Right boundary of the bounding box. \\
+\hline
+{\em bottom} & Bottom boundary of the bounding box. \\
+\hline
+{\em frame} & Input frame to draw the bounding box on. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDetector_af34132f2a2f332edd1d42971fa2202f3}\label{classDetector_af34132f2a2f332edd1d42971fa2202f3}} 
+\index{Detector@{Detector}!load\_model@{load\_model}}
+\index{load\_model@{load\_model}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{load\_model()}{load\_model()}}
+{\footnotesize\ttfamily void Detector\+::load\+\_\+model (\begin{DoxyParamCaption}\item[{std\+::string}]{model\+\_\+\+Cfg,  }\item[{std\+::string}]{model\+\_\+\+Wts }\end{DoxyParamCaption})}
+
+
+
+Load the human detection model from configuration and weights files. 
+
+Load the Yolo\+V5 Pretrained model on C\+O\+CO.
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+\+Cfg} & Path to the model configuration file. \\
+\hline
+{\em model\+\_\+\+Wts} & Path to the model weights file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDetector_a1bf00ccbad1b1ff5a18e9a1d4d3c5bd3}\label{classDetector_a1bf00ccbad1b1ff5a18e9a1d4d3c5bd3}} 
+\index{Detector@{Detector}!processing@{processing}}
+\index{processing@{processing}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{processing()}{processing()}}
+{\footnotesize\ttfamily void Detector\+::processing (\begin{DoxyParamCaption}\item[{Mat \&}]{frame,  }\item[{const vector$<$ Mat $>$ \&}]{output }\end{DoxyParamCaption})}
+
+
+
+Process a frame for human detection. 
+
+Preprocess the input frame for object detection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & Input frame for human detection. \\
+\hline
+{\em output} & Vector of Mat objects for output.\\
+\hline
+{\em frame} & Input frame. \\
+\hline
+{\em output} & Output vector for results. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/detector.\+hpp\item 
+app/\mbox{\hyperlink{detector_8cpp}{detector.\+cpp}}\end{DoxyCompactItemize}

@@ -1,12 +1,14 @@
 /**
  * @file tracker.hpp
  * @author Vyshnav Achuthan (vyachu07@umd.edu)
- * @brief 
+ * @author Kiran S Patil (kpatil27@umd.edu)
+ * @author Surya Chappidi (chappidi@umd.edu)
+ * @brief Tracker class for human tracking.
  * @version 0.1
  * @date 2023-10-24
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 #pragma once
 #include <string>
@@ -20,7 +22,7 @@
 using namespace std;
 
 /**
- * @brief Tracker classs
+ * @brief Tracker class for human tracking.
  *
  */
 class Tracker {
@@ -36,32 +38,42 @@ class Tracker {
      * @brief Constructor of Tracker class
      */
     Tracker() {}
+
     /**
      * @brief Destructor of Tracker class
      */
     ~Tracker() {}
+
     /**
-     * @brief set the tracker with the bBox frame
+     * @brief Set the tracker with the bounding box frame.
      *
-     * @param cv_frame input frame
-     * @param get_boxes get bounding box
+     * This function sets the tracker with the provided bounding box frame.
+     *
+     * @param cv_frame Input frame for tracking.
+     * @param get_boxes Bounding box information.
+     * @return A vector of Rectangles representing the tracked regions.
      */
     std::vector<cv::Rect> boundingBox(cv::Mat& cv_frame, std::vector<int> get_boxes);
 
 
     /**
-     * @brief track the human with bounding box
+     * @brief Track the human object with bounding boxes.
      *
-     * @param cv_frame Input image frame
+     * This function tracks a human object in the given input image frame using bounding boxes.
+     *
+     * @param cv_frame Input image frame.
+     * @return A vector of Rectangles representing the tracked human object.
      */
     std::vector<cv::Rect> humanTrack(cv::Mat& cv_frame);
 
 
     /**
-     * @brief Draw bounding box for the tracked target
+     * @brief Draw bounding boxes for the tracked human target.
      *
-     * @param cv_frame Input image frame
-     * @param get_boxes Detected bounding box from cv frame
+     * This function draws bounding boxes for the tracked human target on the input image frame.
+     *
+     * @param cv_frame Input image frame.
+     * @param get_boxes Detected bounding box from the input frame.
      */
     void getPredictions(cv::Mat& cv_frame, std::vector<int> get_boxes);
 };

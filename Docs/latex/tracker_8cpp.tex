@@ -1,0 +1,91 @@
+\hypertarget{tracker_8cpp}{}\doxysection{app/tracker.cpp File Reference}
+\label{tracker_8cpp}\index{app/tracker.cpp@{app/tracker.cpp}}
+
+
+Implementation of the \mbox{\hyperlink{classTracker}{Tracker}} class for human tracking.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$opencv2/opencv.\+hpp$>$}\newline
+{\ttfamily \#include $<$opencv2/tracking.\+hpp$>$}\newline
+{\ttfamily \#include $<$opencv2/core/ocl.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}../include/tracker.\+hpp\char`\"{}}\newline
+Include dependency graph for tracker.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tracker_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{tracker_8cpp_a7193109c743e6ce9a2814cb673bb830c}{bounding\+Box}} (cv\+::\+Mat \&cv\+\_\+frame, std\+::vector$<$ int $>$ get\+\_\+boxes)
+\begin{DoxyCompactList}\small\item\em Method to construct bounding box using frame obtained. \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{tracker_8cpp_a4cad0c9d0f295c64559dab0dfae45d35}{human\+Track}} (cv\+::\+Mat \&cv\+\_\+frame)
+\begin{DoxyCompactList}\small\item\em Get the frame and track using Byte\+Track. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the \mbox{\hyperlink{classTracker}{Tracker}} class for human tracking. 
+
+\begin{DoxyAuthor}{Author}
+Vyshnav Achuthan (\href{mailto:vyachu07@umd.edu}{\texttt{ vyachu07@umd.\+edu}}) 
+
+Kiran S Patil (\href{mailto:kpatil27@umd.edu}{\texttt{ kpatil27@umd.\+edu}}) 
+
+Surya Chappidi (\href{mailto:chappidi@umd.edu}{\texttt{ chappidi@umd.\+edu}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/10-\/24
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tracker_8cpp_a7193109c743e6ce9a2814cb673bb830c}\label{tracker_8cpp_a7193109c743e6ce9a2814cb673bb830c}} 
+\index{tracker.cpp@{tracker.cpp}!boundingBox@{boundingBox}}
+\index{boundingBox@{boundingBox}!tracker.cpp@{tracker.cpp}}
+\doxysubsubsection{\texorpdfstring{boundingBox()}{boundingBox()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Rect$>$ bounding\+Box (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{cv\+\_\+frame,  }\item[{std\+::vector$<$ int $>$}]{get\+\_\+boxes }\end{DoxyParamCaption})}
+
+
+
+Method to construct bounding box using frame obtained. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cv\+\_\+frame} & \\
+\hline
+{\em get\+\_\+boxes} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$cv\+::\+Rect$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tracker_8cpp_a4cad0c9d0f295c64559dab0dfae45d35}\label{tracker_8cpp_a4cad0c9d0f295c64559dab0dfae45d35}} 
+\index{tracker.cpp@{tracker.cpp}!humanTrack@{humanTrack}}
+\index{humanTrack@{humanTrack}!tracker.cpp@{tracker.cpp}}
+\doxysubsubsection{\texorpdfstring{humanTrack()}{humanTrack()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Rect$>$ human\+Track (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{cv\+\_\+frame }\end{DoxyParamCaption})}
+
+
+
+Get the frame and track using Byte\+Track. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cv\+\_\+frame} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$cv\+::\+Rect$>$ 
+\end{DoxyReturn}

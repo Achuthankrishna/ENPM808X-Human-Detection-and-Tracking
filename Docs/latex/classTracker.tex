@@ -1,0 +1,128 @@
+\hypertarget{classTracker}{}\doxysection{Tracker Class Reference}
+\label{classTracker}\index{Tracker@{Tracker}}
+
+
+\mbox{\hyperlink{classTracker}{Tracker}} class for human tracking.  
+
+
+
+
+{\ttfamily \#include $<$tracker.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTracker_adf214393a14e8bf23de2fc8231e239ec}{Tracker}} ()
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classTracker}{Tracker}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTracker_a0ed1e23312cfe7fcfe5f2ac2abd69163}{$\sim$\+Tracker}} ()
+\begin{DoxyCompactList}\small\item\em Destructor of \mbox{\hyperlink{classTracker}{Tracker}} class. \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{classTracker_ae0fceee7c48e1c67a9d76e8870e21b0c}{bounding\+Box}} (cv\+::\+Mat \&cv\+\_\+frame, std\+::vector$<$ int $>$ get\+\_\+boxes)
+\begin{DoxyCompactList}\small\item\em Set the tracker with the bounding box frame. \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{classTracker_ac507f6fc0418eba65fca35887515f5f4}{human\+Track}} (cv\+::\+Mat \&cv\+\_\+frame)
+\begin{DoxyCompactList}\small\item\em Track the human object with bounding boxes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTracker_a77dccdd478f08f1ae82a56ad523cc777}{get\+Predictions}} (cv\+::\+Mat \&cv\+\_\+frame, std\+::vector$<$ int $>$ get\+\_\+boxes)
+\begin{DoxyCompactList}\small\item\em Draw bounding boxes for the tracked human target. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classTracker}{Tracker}} class for human tracking. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTracker_adf214393a14e8bf23de2fc8231e239ec}\label{classTracker_adf214393a14e8bf23de2fc8231e239ec}} 
+\index{Tracker@{Tracker}!Tracker@{Tracker}}
+\index{Tracker@{Tracker}!Tracker@{Tracker}}
+\doxysubsubsection{\texorpdfstring{Tracker()}{Tracker()}}
+{\footnotesize\ttfamily Tracker\+::\+Tracker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classTracker}{Tracker}} class. 
+
+Construct a new \mbox{\hyperlink{classTracker}{Tracker}} object.\mbox{\Hypertarget{classTracker_a0ed1e23312cfe7fcfe5f2ac2abd69163}\label{classTracker_a0ed1e23312cfe7fcfe5f2ac2abd69163}} 
+\index{Tracker@{Tracker}!````~Tracker@{$\sim$Tracker}}
+\index{````~Tracker@{$\sim$Tracker}!Tracker@{Tracker}}
+\doxysubsubsection{\texorpdfstring{$\sim$Tracker()}{~Tracker()}}
+{\footnotesize\ttfamily Tracker\+::$\sim$\+Tracker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor of \mbox{\hyperlink{classTracker}{Tracker}} class. 
+
+Destroy the \mbox{\hyperlink{classTracker}{Tracker}} object.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTracker_ae0fceee7c48e1c67a9d76e8870e21b0c}\label{classTracker_ae0fceee7c48e1c67a9d76e8870e21b0c}} 
+\index{Tracker@{Tracker}!boundingBox@{boundingBox}}
+\index{boundingBox@{boundingBox}!Tracker@{Tracker}}
+\doxysubsubsection{\texorpdfstring{boundingBox()}{boundingBox()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Rect$>$ Tracker\+::bounding\+Box (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{cv\+\_\+frame,  }\item[{std\+::vector$<$ int $>$}]{get\+\_\+boxes }\end{DoxyParamCaption})}
+
+
+
+Set the tracker with the bounding box frame. 
+
+This function sets the tracker with the provided bounding box frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cv\+\_\+frame} & Input frame for tracking. \\
+\hline
+{\em get\+\_\+boxes} & Bounding box information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of Rectangles representing the tracked regions. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTracker_a77dccdd478f08f1ae82a56ad523cc777}\label{classTracker_a77dccdd478f08f1ae82a56ad523cc777}} 
+\index{Tracker@{Tracker}!getPredictions@{getPredictions}}
+\index{getPredictions@{getPredictions}!Tracker@{Tracker}}
+\doxysubsubsection{\texorpdfstring{getPredictions()}{getPredictions()}}
+{\footnotesize\ttfamily void Tracker\+::get\+Predictions (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{cv\+\_\+frame,  }\item[{std\+::vector$<$ int $>$}]{get\+\_\+boxes }\end{DoxyParamCaption})}
+
+
+
+Draw bounding boxes for the tracked human target. 
+
+Obtain predictions from detector.
+
+This function draws bounding boxes for the tracked human target on the input image frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cv\+\_\+frame} & Input image frame. \\
+\hline
+{\em get\+\_\+boxes} & Detected bounding box from the input frame.\\
+\hline
+{\em cv\+\_\+frame} & \\
+\hline
+{\em get\+\_\+boxes} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTracker_ac507f6fc0418eba65fca35887515f5f4}\label{classTracker_ac507f6fc0418eba65fca35887515f5f4}} 
+\index{Tracker@{Tracker}!humanTrack@{humanTrack}}
+\index{humanTrack@{humanTrack}!Tracker@{Tracker}}
+\doxysubsubsection{\texorpdfstring{humanTrack()}{humanTrack()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Rect$>$ Tracker\+::human\+Track (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{cv\+\_\+frame }\end{DoxyParamCaption})}
+
+
+
+Track the human object with bounding boxes. 
+
+This function tracks a human object in the given input image frame using bounding boxes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cv\+\_\+frame} & Input image frame. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of Rectangles representing the tracked human object. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{tracker_8hpp}{tracker.\+hpp}}\item 
+app/\mbox{\hyperlink{tracker_8cpp}{tracker.\+cpp}}\end{DoxyCompactItemize}
