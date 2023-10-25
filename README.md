@@ -33,8 +33,8 @@ The "Human Tracker for Robots" project is a cutting-edge proposal presented to A
 
 ## Compilation
 ```
-$ git clone https://github.com/kirangit27/TDD_Group4.git
-$ cd TDD_Group4
+$ git clone https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking.git
+$ cd ENPM808X-Human-Detection-and-Tracking
 $ cmake -S ./ -B build/
 $ cmake --build build/
 ```
