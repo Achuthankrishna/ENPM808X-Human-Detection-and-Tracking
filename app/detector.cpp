@@ -19,3 +19,13 @@
 Detector::Detector(){
     return 0;
 }
+void Detector::processing(Mat& frame, const vector<Mat> & output){
+
+}
+void Detector::drawboxes(int classID, float con, int left,
+        int right, int bottom, Mat& frame){
+
+        }
+vector<String> Detector::ClassNames(const Net& net){
+
+}
