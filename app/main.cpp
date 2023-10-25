@@ -10,9 +10,9 @@
  * @copyright Copyright (c) 2023
  *
  */
-#include "../include/lib1.hpp"
+// #include "../include/lib1.hpp"
 
 int main() {
-    dummy();
+    // dummy();
     return 0;
 }
