@@ -49,4 +49,27 @@ class Detector{
      */
     ~Detector() {
     }
+        /**
+     * @brief
+     *
+     */
+    void processing(Mat& frame, const vector<Mat> & output);
+
+    /**
+     * @brief
+     *
+     */
+    void drawboxes(int classID, float con, int left, int right, int bottom, Mat& frame)
+
+    /**
+     * @brief
+     *
+     */
+    vector<Sting> ClassNames(const Net& net);
+
+    /**
+     * @brief
+     *
+     */
+    void load_model(std::string model_Cfg, std::string model_Wts);
 }
