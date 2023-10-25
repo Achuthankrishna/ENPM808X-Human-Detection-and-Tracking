@@ -1,0 +1,13 @@
+<map id="include/camera.hpp" name="include/camera.hpp">
+<area shape="rect" id="node1" title="Class for capturing frames from a camera." alt="" coords="397,5,547,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,85,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="110,80,183,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="208,80,283,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="307,80,370,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="395,80,453,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="477,80,563,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="587,80,720,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="744,80,907,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="931,80,1085,107"/>
+<area shape="rect" id="node11" title=" " alt="" coords="1109,80,1267,107"/>
+</map>

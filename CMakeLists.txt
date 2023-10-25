@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.14)
 project(scratch)
 
+find_package(OpenCV REQUIRED)
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
+
 #
 # GoogleTest Setup
 # ref: https://google.github.io/googletest/quickstart-cmake.html
@@ -51,8 +55,11 @@ if ( DOXYGEN_FOUND )
   set( DOXYGEN_DOT_GRAPH_MAX_NODES  100 )
   set( DOXYGEN_MAX_DOT_GRAPH_DEPTH  0 )
   set( DOXYGEN_DOT_TRANSPARENT      YES )
+  
+  # Add OpenCV include directories
+  include_directories(${OpenCV_INCLUDE_DIRS})
 else()
-  message( FATAL_ERROR "Doxygen needs to be installed to generate the doxygen documentation" )
+  message(FATAL_ERROR "Doxygen needs to be installed to generate the Doxygen documentation")
 endif()
 
 #
@@ -85,7 +92,6 @@ if(WANT_COVERAGE)
     ${PROJECT_BINARY_DIR}
     )
 endif()
-
 #
 # c++ Boilerplate Modification Starts Here
 # ref: https://iamsorush.com/posts/cpp-cmake-essential/
@@ -102,7 +108,6 @@ doxygen_add_docs(docs           # target name
   # ${PROJECT_SOURCE_DIR}/libs
   ${PROJECT_SOURCE_DIR}/include
   )
-
 # create targets for building code coverage reports
 if(WANT_COVERAGE)
   # unit test coverage:
@@ -126,6 +131,8 @@ if(WANT_COVERAGE)
     "test/test.cpp"    # App does not run unit test, so don't analyze it
     "test/main.cpp"    # App does not run unit test, so don't analyze it
     )
+  # target_link_libraries(shell-app ${OpenCV_LIBS})
+
 
 endif()
 

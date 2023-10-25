@@ -1,0 +1,88 @@
+\hypertarget{classRobot}{}\doxysection{Robot Class Reference}
+\label{classRobot}\index{Robot@{Robot}}
+
+
+\mbox{\hyperlink{classRobot}{Robot}} class for performing human tracking.  
+
+
+
+
+{\ttfamily \#include $<$robot.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{classRobot_aac37761ba755f9af8864c8ad5cc73d4d}{human\+Track}} (cv\+::\+Mat \&cv\+\_\+frame)
+\begin{DoxyCompactList}\small\item\em Track human objects in the input frame. \end{DoxyCompactList}\item 
+cv\+::\+Mat \mbox{\hyperlink{classRobot_a65e4bb53ea5bb9b7b661e8fb0cafd27a}{Read\+Frame}} ()
+\begin{DoxyCompactList}\small\item\em Read a frame from the camera. \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{classRobot_ac0350b6a2bb2a08027ee4118249f64cb}{bounding\+Box}} (cv\+::\+Rect \&bbox)
+\begin{DoxyCompactList}\small\item\em Set the bounding box for tracking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classRobot}{Robot}} class for performing human tracking. 
+
+The \mbox{\hyperlink{classRobot}{Robot}} class integrates detection, camera, and tracking functionalities to track humans. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRobot_ac0350b6a2bb2a08027ee4118249f64cb}\label{classRobot_ac0350b6a2bb2a08027ee4118249f64cb}} 
+\index{Robot@{Robot}!boundingBox@{boundingBox}}
+\index{boundingBox@{boundingBox}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{boundingBox()}{boundingBox()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Rect$>$ Robot\+::bounding\+Box (\begin{DoxyParamCaption}\item[{cv\+::\+Rect \&}]{bbox }\end{DoxyParamCaption})}
+
+
+
+Set the bounding box for tracking. 
+
+This function sets the bounding box for tracking in the integrated tracker.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bbox} & The bounding box to be tracked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of Rectangles representing the tracked region. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRobot_aac37761ba755f9af8864c8ad5cc73d4d}\label{classRobot_aac37761ba755f9af8864c8ad5cc73d4d}} 
+\index{Robot@{Robot}!humanTrack@{humanTrack}}
+\index{humanTrack@{humanTrack}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{humanTrack()}{humanTrack()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Rect$>$ Robot\+::human\+Track (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{cv\+\_\+frame }\end{DoxyParamCaption})}
+
+
+
+Track human objects in the input frame. 
+
+This function uses the integrated detector and tracker to track human objects in the given frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cv\+\_\+frame} & Input frame for human tracking. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of Rectangles representing the tracked human objects. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRobot_a65e4bb53ea5bb9b7b661e8fb0cafd27a}\label{classRobot_a65e4bb53ea5bb9b7b661e8fb0cafd27a}} 
+\index{Robot@{Robot}!ReadFrame@{ReadFrame}}
+\index{ReadFrame@{ReadFrame}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{ReadFrame()}{ReadFrame()}}
+{\footnotesize\ttfamily cv\+::\+Mat Robot\+::\+Read\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read a frame from the camera. 
+
+This function captures a frame from the camera and returns it as a cv\+::\+Mat.
+
+\begin{DoxyReturn}{Returns}
+A cv\+::\+Mat representing the captured frame. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{robot_8hpp}{robot.\+hpp}}\end{DoxyCompactItemize}
