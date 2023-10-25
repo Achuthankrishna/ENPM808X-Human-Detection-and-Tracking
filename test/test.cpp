@@ -12,7 +12,8 @@ TEST(dummy_test, this_should_pass) {
 TEST(OpenCVTest, LoadImage) {
     // Load an image from file
     std::string imagePath = __FILE__;
-    imagePath = imagePath.substr(0, imagePath.find_last_of("/\\") + 1) + "../app/test.jpg";
+    imagePath = imagePath.substr(0, imagePath.find_last_of("/\\") + 1)
+                              + "../app/test.jpg";
     cv::Mat image = cv::imread(imagePath);
 
     // Check if the image was loaded successfully

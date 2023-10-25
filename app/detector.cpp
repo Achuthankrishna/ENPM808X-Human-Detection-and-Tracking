@@ -10,28 +10,26 @@
  * @copyright Copyright (c) 2023
  *
  */
-#include "HumanDetector.hpp"
+#include " ../include/detector.hpp"
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <opencv2/dnn.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
-#include <opencv2/opencv.hpp>
-#include <sstream>
 
 /**
  * @brief Construct a new Detector object
  *
  */
-Detector::Detector(){
+Detector::Detector() {
 }
 /**
  * @brief Destroy the Detector object
  *
  */
-Detector::~Detector(){
-
+Detector::~Detector() {
 }
 
 /**
@@ -40,8 +38,7 @@ Detector::~Detector(){
  * @param frame Input frame.
  * @param output Output vector for results.
  */
-void Detector::processing(Mat& frame, const vector<Mat> & output){
-
+void Detector::processing(Mat& frame, const vector<Mat> & output) {
 }
 
 /**
@@ -50,7 +47,8 @@ void Detector::processing(Mat& frame, const vector<Mat> & output){
  * @param model_Cfg Path to the model configuration file.
  * @param model_Wts Path to the model weights file.
  */
-void Detector::load_model(std::string model_Cfg, std::string model_Wts);
+void Detector::load_model(std::string model_Cfg, std::string model_Wts) {
+}
 
 /**
  * @brief Get a vector of class names from the neural network model.
@@ -58,8 +56,7 @@ void Detector::load_model(std::string model_Cfg, std::string model_Wts);
  * @param net The neural network model.
  * @return vector<String> A vector of class names.
  */
-vector<String> Detector::ClassNames(const Net& net){
-
+vector<String> Detector::ClassNames(const Net& net) {
 }
 
 /**
@@ -72,9 +69,6 @@ vector<String> Detector::ClassNames(const Net& net){
  * @param bottom Bottom boundary of the bounding box.
  * @param frame Input frame to draw the bounding box on.
  */
-void Detector::drawboxes(int classID, float con, int left, int right, int bottom, Mat& frame){
-
+void Detector::drawboxes(int classID, float con, int left, int right,
+                        int bottom, Mat& frame) {
 }
-
-
-

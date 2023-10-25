@@ -11,7 +11,6 @@
  *
  */
 #pragma once
-
 #include<iostream>
 #include <fstream>
 #include <sstream>
@@ -22,10 +21,7 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
-
 using cv;
-
-
 /**
  * @brief Class representing a camera.
  */
@@ -36,7 +32,6 @@ class Camera{
     cv::Mat get_frame; ///< The captured frame.
 
     public:
-
     /**
      * @brief Constructor for Camera class
      *

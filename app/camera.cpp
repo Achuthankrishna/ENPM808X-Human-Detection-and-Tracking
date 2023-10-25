@@ -17,14 +17,14 @@
  * @brief Construct a new Camera:: Camera object
  *
  */
-Camera::Camera(){
+Camera::Camera() {
     get_video = cv::VideoCapture(0);
 }
 /**
  * @brief Destroy the Camera:: Camera object
  *
  */
-Camera::~Camera(){
+Camera::~Camera() {
     get_video.release();
 }
 /**
@@ -32,7 +32,7 @@ Camera::~Camera(){
  *
  * @return cv::Mat
  */
-cv::Mat Camera::ReadFrame(){
+cv::Mat Camera::ReadFrame() {
     get_video.read(get_frame);
     return get_frame;
 }
