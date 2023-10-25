@@ -29,3 +29,33 @@ Tracker::Tracker(){
 Tracker::~Tracker(){
 
 }
+/**
+ * @brief Obtain predictions from detector
+ * 
+ * @param cv_frame 
+ * @param get_boxes 
+ */
+void Tracker::getPredictions(cv::Mat& cv_frame, std::vector<int> get_boxes) {
+}
+
+/**
+ * @brief Method to construct bounding box using frame obtained
+ * 
+ * @param cv_frame 
+ * @param get_boxes 
+ * @return std::vector<cv::Rect> 
+ */
+std::vector<cv::Rect> boundingBox(cv::Mat& cv_frame, std::vector<int> get_boxes) {
+    return {};
+}
+/**
+ * @brief Get the frame and track using ByteTrack
+ * 
+ * @param cv_frame 
+ * @return std::vector<cv::Rect> 
+ */
+
+std::vector<cv::Rect> humanTrack(cv::Mat& cv_frame) {
+    return {};
+}
+
