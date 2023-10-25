@@ -1,6 +1,6 @@
 # Human Detection and Tracking
 
-# Human Detection and Tracking
+## Human Detection and Tracking Badges
 ![CICD Workflow status](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/branch/main/graph/badge.svg)](https://codecov.io/gh/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 
@@ -30,3 +30,20 @@ The "Human Tracker for Robots" project is a cutting-edge proposal presented to A
 | Proposal Video            | [link](https://drive.google.com/drive/folders/12MTIUhz1Iw60CUklfgAJ4cyKDgVU5TD8?usp=share_link) |
 | AIP                       | [link](https://docs.google.com/spreadsheets/d/1wyLYvweVdQvH0OAug5pCWzMBC9qM7BZ0RR3IT80mlfs/view?usp=sharing) |
 | Sprint Planning & Review  | [link](https://docs.google.com/document/d/1HD9eCnWuII8pH6mdCwwa3JQ9on-ul-u7y1zGJ7Iy514/view?usp=sharing) |
+
+## Compilation
+```
+$ git clone https://github.com/kirangit27/TDD_Group4.git
+$ cd TDD_Group4
+$ cmake -S ./ -B build/
+$ cmake --build build/
+```
+## Testing
+```
+$ cd build/
+$ ctest --test-dir build/
+```
+## Notes
+- The results for cpplint and cppcheck are included in the results folder.
+- Doxygen-generated docs are present in the Docs folder.
+
