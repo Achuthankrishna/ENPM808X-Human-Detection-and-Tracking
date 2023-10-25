@@ -19,7 +19,7 @@ target_include_directories(cpp-test PUBLIC
 target_link_libraries(cpp-test PUBLIC
   # list of libraries:
   gtest
-  # ${OpenCV_LIBS}
+  ${OpenCV_LIBS}
 
   )
 
