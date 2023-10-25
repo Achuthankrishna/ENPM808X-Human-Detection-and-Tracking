@@ -21,15 +21,13 @@
  * @brief Construct a new Tracker object
  *
  */
-Tracker::Tracker(){
-
+Tracker::Tracker() {
 }
 /**
  * @brief Destroy the Tracker object
  *
  */
-Tracker::~Tracker(){
-
+Tracker::~Tracker() {
 }
 /**
  * @brief Obtain predictions from detector
@@ -47,7 +45,8 @@ void Tracker::getPredictions(cv::Mat& cv_frame, std::vector<int> get_boxes) {
  * @param get_boxes
  * @return std::vector<cv::Rect>
  */
-std::vector<cv::Rect> boundingBox(cv::Mat& cv_frame, std::vector<int> get_boxes) {
+std::vector<cv::Rect> boundingBox(const cv::Mat& cv_frame,
+                                    const std::vector<int> get_boxes) {
     return {};
 }
 /**
@@ -57,7 +56,7 @@ std::vector<cv::Rect> boundingBox(cv::Mat& cv_frame, std::vector<int> get_boxes)
  * @return std::vector<cv::Rect>
  */
 
-std::vector<cv::Rect> humanTrack(cv::Mat& cv_frame) {
+std::vector<cv::Rect> humanTrack(const cv::Mat& cv_frame) {
     return {};
 }
 

@@ -12,12 +12,12 @@
  */
 #pragma once
 
-#include<iostream>
+#include <iostream>
 #include <fstream>
 #include <sstream>
-#include<vector>
-#include<string>
-#include<algorithm>
+#include <vector>
+#include <string>
+#include <algorithm>
 #include <opencv2/dnn.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/opencv.hpp>
