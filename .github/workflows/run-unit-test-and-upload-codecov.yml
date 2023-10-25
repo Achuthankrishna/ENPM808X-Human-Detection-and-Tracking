@@ -43,7 +43,10 @@ jobs:
           sudo apt update
           sudo apt install -y software-properties-common
           sudo apt install -y doxygen lcov gcovr
-          
+      - name: install opencv 
+        run: |   
+            sudo apt-get install libopencv-dev 
+            sudo apt-get install libopencv-contrib-dev          
       # Build, run unit test, and generate coverage report
       - name: Configure CMake flags and build exectables
         run: |
