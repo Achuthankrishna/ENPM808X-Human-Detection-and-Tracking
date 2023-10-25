@@ -10,11 +10,13 @@ add_executable(shell-app
 target_include_directories(shell-app PUBLIC
   # list inclue directories:
   ${CMAKE_SOURCE_DIR}/include
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 # Any dependent libraires needed to build this target.
 target_link_libraries(shell-app PUBLIC
   # list of libraries
+  ${OpenCV_LIBS}
 
   )
 
