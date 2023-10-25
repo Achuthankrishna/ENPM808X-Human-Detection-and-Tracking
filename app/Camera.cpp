@@ -19,3 +19,8 @@ Camera::Camera(){
 Camera::~Camera(){
     get_video.release();
 }
+
+cv::Mat Camera::ReadFrame(){
+    get_video.read(get_frame);
+    return get_frame;
+}
