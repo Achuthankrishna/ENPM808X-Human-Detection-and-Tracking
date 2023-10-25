@@ -16,7 +16,7 @@ target_include_directories(shell-app PUBLIC
 # Any dependent libraires needed to build this target.
 target_link_libraries(shell-app PUBLIC
   # list of libraries
-  ${OpenCV_LIBS}
+  # ${OpenCV_LIBS}
 
   )
 

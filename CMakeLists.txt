@@ -131,7 +131,7 @@ if(WANT_COVERAGE)
     "test/test.cpp"    # App does not run unit test, so don't analyze it
     "test/main.cpp"    # App does not run unit test, so don't analyze it
     )
-  target_link_libraries(shell-app ${OpenCV_LIBS})
+  # target_link_libraries(shell-app ${OpenCV_LIBS})
 
 
 endif()
