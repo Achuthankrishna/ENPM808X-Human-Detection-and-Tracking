@@ -21,7 +21,6 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
-using cv;
 /**
  * @brief Class representing a camera.
  */
@@ -36,7 +35,7 @@ class Camera{
      * @brief Constructor for Camera class
      *
      */
-    Camera();
+    Camera(std::string videoPath);
 
     /**
      * @brief Destructor for Camera class
@@ -52,4 +51,3 @@ class Camera{
     cv::Mat ReadFrame();
 
 };
-
