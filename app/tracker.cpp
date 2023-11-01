@@ -57,7 +57,20 @@ void Tracker::getPredictions(cv::Mat& cv_frame, std::vector<int> get_boxes) {
  */
 std::vector<cv::Rect> boundingBox(const cv::Mat& cv_frame,
                                     const std::vector<int> get_boxes) {
-    return {};
+       std::vector<cv::Rect> trackedRegions;
+
+    for (unsigned i = 0; i < get_boxes.size(); i++) {
+        std::cout << "ID: " << get_boxes[i].id << " Confidence: " << get_boxes[i].confidence << std::endl;
+        cv::rectangle(cv_frame, get_boxes[i].box, colors[i], 2, 1);
+        std::string label = "Object " + std::to_string(i + 1);
+        cv::putText(cv_frame, label, cv::Point(get_boxes[i].box.x, get_boxes[i].box.y),
+                    cv::FONT_HERSHEY_SIMPLEX, 0.75, colors[i], 2);
+
+        // Add the tracked region to the output vector
+        trackedRegions.push_back(get_boxes[i].box);
+    }
+
+    return trackedRegions;
 }
 /**
  * @brief Get the frame and track using ByteTrack
@@ -67,6 +80,12 @@ std::vector<cv::Rect> boundingBox(const cv::Mat& cv_frame,
  */
 
 std::vector<cv::Rect> humanTrack(const cv::Mat& cv_frame) {
-    return {};
+        trackers->update(frame)
+    std::vector<Detector::bbox> updt;
+    std::vector<cv::Rect2d> objects_list = trackers->getObjects();
+  std::for_each(objects_list.begin(),objects_list.end(),[&updt](cv::Rect2d tracked_object){
+    updt.push_back({0, 100.0, cv::Rect(tracked_object)});
+  });
+  return updt;
 }
 
