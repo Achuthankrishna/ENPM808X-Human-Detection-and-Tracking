@@ -31,6 +31,14 @@ The "Human Tracker for Robots" project is a cutting-edge proposal presented to A
 | AIP                       | [link](https://docs.google.com/spreadsheets/d/1wyLYvweVdQvH0OAug5pCWzMBC9qM7BZ0RR3IT80mlfs/view?usp=sharing) |
 | Sprint Planning & Review  | [link](https://docs.google.com/document/d/1HD9eCnWuII8pH6mdCwwa3JQ9on-ul-u7y1zGJ7Iy514/view?usp=sharing) |
 
+### Phase_2 (Implementation)
+| Document           |Link                                                                                         |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
+| UML Diagram               | [link](https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/development-branch-2/UML/final_UML.png) |
+| Phase 2 Video            | [link](https://drive.google.com/drive/folders/12MTIUhz1Iw60CUklfgAJ4cyKDgVU5TD8?usp=share_link) |
+| AIP                       | [link](https://docs.google.com/spreadsheets/d/1wyLYvweVdQvH0OAug5pCWzMBC9qM7BZ0RR3IT80mlfs/view?usp=sharing) |
+| Sprint Planning & Review  | [link](https://docs.google.com/document/d/19AnJ37ejykyBpvsanAm6y1-T90pdiGQ5QkVrfGozuNQ/view?usp=sharing) |
+
 ## Compilation
 ```
 $ git clone https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking.git
