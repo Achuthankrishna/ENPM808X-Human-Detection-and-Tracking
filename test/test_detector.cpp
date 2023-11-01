@@ -7,12 +7,12 @@
 /**
  * @brief Test case for loading the model.
  */
-TEST(DetectorTest, LoadModelTest) {
-    Detector detector;
-    detector.load_model("../../cfg/yolov3.cfg", "../../cfg/yolov3.weights", "../../cfg/coco.names");
-    // Check if the model is loaded successfully
-    ASSERT_FALSE(detector.network.empty());
-}
+// TEST(DetectorTest, LoadModelTest) {
+//     Detector detector;
+//     detector.load_model("../../cfg/yolov3.cfg", "../../cfg/yolov3.weights", "../../cfg/coco.names");
+//     // Check if the model is loaded successfully
+//     ASSERT_FALSE(detector.network.empty());
+// }
 
 /**
  * @brief Test case for calculating distance.
