@@ -1,3 +1,8 @@
+/**
+ * @file main.cpp
+ * @brief Entry point for running Google Test unit tests.
+ */
+
 #include <gtest/gtest.h>
 
 int main(int argc, char** argv) {

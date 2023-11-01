@@ -1,10 +1,13 @@
+/**
+ * @file opencv_test.cpp
+ * @brief Unit tests for OpenCV functionality.
+ */
+
 #include <gtest/gtest.h>
 #include <opencv2/opencv.hpp>
 
-
 /**
- * @brief Construct a new TEST object for OpenCV
- *
+ * @brief Test case for loading an image using OpenCV.
  */
 TEST(OpenCVTest, LoadImage) {
     // Load an image from file
@@ -16,4 +19,3 @@ TEST(OpenCVTest, LoadImage) {
     // Check if the image was loaded successfully
     EXPECT_FALSE(image.empty());
 }
-

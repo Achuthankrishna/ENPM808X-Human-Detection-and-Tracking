@@ -1,17 +1,24 @@
+/**
+ * @file detector_test.cpp
+ * @brief Unit tests for the Detector class.
+ */
+
 #include "../include/detector.hpp"
 #include <gtest/gtest.h>
 
-
+/**
+ * @brief Test case for loading the model.
+ */
 TEST(DetectorTest, LoadModelTest) {
     Detector detector;
     detector.load_model("model_Cfg", "model_Wts", "c_path");
     // Check if the model is loaded successfully
     ASSERT_FALSE(detector.network.empty());
-
-    // Check if the list of classes is not empty
-    // ASSERT_FALSE(detector.classes.empty());
 }
 
+/**
+ * @brief Test case for calculating distance.
+ */
 TEST(DetectorTest, CalculateDistanceTest) {
     Detector detector;
     // Assume a frame height of 480 pixels and a box height of 120 pixels
@@ -21,6 +28,9 @@ TEST(DetectorTest, CalculateDistanceTest) {
     ASSERT_NEAR(distance, 5.0, 0.5);  // Adjust the expected value as needed
 }
 
+/**
+ * @brief Test case for processing a frame.
+ */
 TEST(DetectorTest, ProcessingTest) {
     Detector detector;
     cv::Mat frame(480, 640, CV_8UC3, cv::Scalar(0, 0, 0)); // Create a black frame
@@ -35,7 +45,9 @@ TEST(DetectorTest, ProcessingTest) {
     ASSERT_TRUE(bboxes.empty());
 }
 
-
+/**
+ * @brief Test case for image processing using the Detector class.
+ */
 TEST(DetectorTest, ImageProcessing) {
     Detector detector;
 
@@ -56,7 +68,4 @@ TEST(DetectorTest, ImageProcessing) {
     // Perform assertions based on your requirements
     ASSERT_FALSE(inputImage.empty());
     ASSERT_FALSE(boundingBoxes.empty());
-
 }
-
-

@@ -1,8 +1,14 @@
-#include "../include/camera.hpp"
+/**
+ * @file camera_test.cpp
+ * @brief Unit tests for the Camera class.
+ */
 
+#include "../include/camera.hpp"
 #include <gtest/gtest.h>
 
-
+/**
+ * @brief Test case for reading a frame from a camera.
+ */
 TEST(CameraTest, ReadFrame) {
     // Create a temporary video file for testing (you can replace this with an actual video file)
     cv::VideoCapture test_video;
