@@ -15,7 +15,7 @@
 name: Run Unit Test and Upload Coverage Report
 
 on:
-  # Triggered whenever push to main 
+  # Triggered whenever push to main
   push:
     branches: [ "main" ]
 
@@ -32,21 +32,21 @@ jobs:
     # Create a container of the latest Ubuntu, other values could be
     # ubuntu-latest, ubuntu-22.04, etc.
     runs-on: ubuntu-22.04
-    
+
     steps:
       # We want to use GitHub CI checkout version 3 to check out our branch
       - uses: actions/checkout@v3
-      
+
       # Install some system pacakges
       - name: Install build packages
         run: |
           sudo apt update
           sudo apt install -y software-properties-common
           sudo apt install -y doxygen lcov gcovr
-      - name: install opencv 
-        run: |   
-            sudo apt-get install libopencv-dev 
-            sudo apt-get install libopencv-contrib-dev          
+      - name: install opencv
+        run: |
+            sudo apt-get install libopencv-dev=4.2
+            sudo apt-get install libopencv-contrib-dev=4.2
       # Build, run unit test, and generate coverage report
       - name: Configure CMake flags and build exectables
         run: |
@@ -60,5 +60,4 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           files: ${{github.workspace}}/build/test_coverage.info
           fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)      
-          
+          verbose: true # optional (default = false)
