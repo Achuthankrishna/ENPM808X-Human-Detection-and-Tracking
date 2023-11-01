@@ -1,7 +1,12 @@
-cpplint --filter="-legal/copyright" $( find . -name *.cpp | grep -vE -e "^./build/" )
+interns@thebeast-Precision-7760:~/prim/ENPM808X-Human-Detection-and-Tracking$ cpplint --filter="-legal/copyright" $( find . -name *.cpp | grep -vE -e "^./build/" )
 Done processing ./app/camera.cpp
 Done processing ./app/detector.cpp
 Done processing ./app/main.cpp
+Done processing ./app/robot.cpp
 Done processing ./app/tracker.cpp
 Done processing ./test/main.cpp
 Done processing ./test/test.cpp
+Done processing ./test/test_cam.cpp
+Done processing ./test/test_detector.cpp
+Done processing ./test/test_tracker.cpp
+in

@@ -1,0 +1,67 @@
+[
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/app",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4    -std=gnu++14 -o CMakeFiles/shell-app.dir/main.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/main.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/main.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/app",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4    -std=gnu++14 -o CMakeFiles/shell-app.dir/camera.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/camera.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/camera.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/app",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4    -std=gnu++14 -o CMakeFiles/shell-app.dir/tracker.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/tracker.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/tracker.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/app",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4    -std=gnu++14 -o CMakeFiles/shell-app.dir/detector.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/detector.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/detector.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/app",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4    -std=gnu++14 -o CMakeFiles/shell-app.dir/robot.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/robot.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/robot.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/test",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4 -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest/include -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest    -std=gnu++14 -o CMakeFiles/cpp-test.dir/main.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/main.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/main.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/test",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4 -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest/include -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest    -std=gnu++14 -o CMakeFiles/cpp-test.dir/test.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/test.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/test.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/test",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4 -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest/include -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest    -std=gnu++14 -o CMakeFiles/cpp-test.dir/test_cam.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/test_cam.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/test_cam.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/test",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4 -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest/include -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest    -std=gnu++14 -o CMakeFiles/cpp-test.dir/__/app/camera.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/camera.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/camera.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/test",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4 -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest/include -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest    -std=gnu++14 -o CMakeFiles/cpp-test.dir/test_detector.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/test_detector.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/test_detector.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/test",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4 -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest/include -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest    -std=gnu++14 -o CMakeFiles/cpp-test.dir/__/app/detector.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/detector.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/detector.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/test",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4 -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest/include -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest    -std=gnu++14 -o CMakeFiles/cpp-test.dir/test_tracker.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/test_tracker.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/test/test_tracker.cpp"
+},
+{
+  "directory": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/test",
+  "command": "/usr/bin/c++   -I/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/include -isystem /usr/include/opencv4 -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest/include -isystem /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/build/_deps/googletest-src/googletest    -std=gnu++14 -o CMakeFiles/cpp-test.dir/__/app/tracker.cpp.o -c /home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/tracker.cpp",
+  "file": "/home/interns/prim/ENPM808X-Human-Detection-and-Tracking/app/tracker.cpp"
+}
+]

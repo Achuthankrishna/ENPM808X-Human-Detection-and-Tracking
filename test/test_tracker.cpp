@@ -2,11 +2,9 @@
  * @file tracker_test.cpp
  * @brief Unit tests for the Tracker class.
  */
-
+#include <gtest/gtest.h>
 #include "../include/tracker.hpp"
 #include "../include/detector.hpp"
-#include <gtest/gtest.h>
-
 /**
  * @brief Test case for getting predictions from the Tracker.
  */
@@ -15,7 +13,8 @@ TEST(TrackerTest, TestGetPredictions) {
     cv::Mat testImage = cv::Mat::zeros(cv::Size(500, 500), CV_8UC3);
 
     // Draw a white rectangle (our "human") on the image
-    cv::rectangle(testImage, cv::Point(50, 50), cv::Point(100, 100), cv::Scalar(255, 255, 255), -1);
+    cv::rectangle(testImage, cv::Point(50, 50),
+    cv::Point(100, 100), cv::Scalar(255, 255, 255), -1);
 
     // Create a bounding box around the "human"
     Detector::bbox box = {0, 1.0, cv::Rect(50, 50, 50, 50)};
@@ -50,8 +49,7 @@ TEST(TrackerTest, TestHumanTrack) {
 
     std::vector<cv::Rect_<double>> regions = {{0, 0, 100, 100}};
 
-    std::vector<Detector::bbox> trackedBoxes = tracker.humanTrack(frame, regions);
-
-    // Check that the size of the returned vector is equal to the size of the input vector
+    std::vector<Detector::bbox> trackedBoxes =
+    tracker.humanTrack(frame, regions);
     ASSERT_EQ(trackedBoxes.size(), 0);
 }

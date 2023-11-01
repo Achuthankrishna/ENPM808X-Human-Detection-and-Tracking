@@ -2,16 +2,13 @@
  * @file camera_test.cpp
  * @brief Unit tests for the Camera class.
  */
-
-#include "../include/camera.hpp"
 #include <gtest/gtest.h>
-
+#include "../include/camera.hpp"
 /**
  * @brief Test case for reading a frame from a camera.
  */
 // Commenting this because CodeCov cant run live camera
 // TEST(CameraTest, ReadFrame) {
-//     // Create a temporary video file for testing (you can replace this with an actual video file)
 //     cv::VideoCapture test_video;
 //     cv::Mat test_frame;
 //     test_video.open(0);

@@ -40,11 +40,8 @@ class Tracker {
     /**
      * @brief Constructor of Tracker class
      */
-      Tracker() {
-         // Initialize trackers and colors if necessary
-         trackers = cv::MultiTracker::create();
-     }
-
+   Tracker() : trackers(cv::MultiTracker::create()) {
+   }
     /**
      * @brief Destructor of Tracker class
      */
@@ -59,7 +56,7 @@ class Tracker {
      * @param get_boxes Bounding box information.
      * @return A vector of Rectangles representing the tracked regions.
      */
-    std::vector<cv::Rect_<double>> boundingBox(const cv::Mat& cv_frame, const std::vector<Detector::bbox> get_boxes);
+    std::vector<cv::Rect_<double>> boundingBox(const cv::Mat& cv_frame, const std::vector<Detector::bbox> &get_boxes);
 
 
     /**

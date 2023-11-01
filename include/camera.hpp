@@ -35,7 +35,7 @@ class Camera{
      * @brief Constructor for Camera class
      *
      */
-    Camera(std::string videoPath);
+    explicit Camera(std::string videoPath);
 
     /**
      * @brief Destructor for Camera class
