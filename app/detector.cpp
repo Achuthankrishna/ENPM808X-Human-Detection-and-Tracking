@@ -38,7 +38,53 @@ Detector::~Detector() {
  * @param frame Input frame.
  * @param output Output vector for results.
  */
-void Detector::processing(Mat& frame, const vector<Mat> & output) {
+std::vector<std::tuple<int, float, cv::Rect>> Detector::processing(cv::Mat& frame, const std::vector<cv::Mat> & output) {
+    std::vector<int> detectedClassIds;
+    std::vector<float> detectedConfidences;
+    std::vector<cv::Rect> detectedBoxes;
+    std::vector<bbox> bboxes;
+
+    for (size_t i = 0; i < output.size(); ++i) {
+        float* data = (float*)(output[i].data);
+        for (int j = 0; j < output[i].rows; ++j, data += output[i].cols) {
+            cv::Mat scores = output[i].row(j).colRange(5, output[i].cols);
+            cv::Point labelPoint;
+            double confidencescore;
+            cv::minMaxLoc(scores, 0, &confidence, 0, &labelPoint);
+
+            if (confidencescore > confidenceThreshold) {
+                int centerX = static_cast<int>(data[0] * frame.cols);
+                int centerY = static_cast<int>(data[1] * frame.rows);
+                int width = static_cast<int>(data[2] * frame.cols);
+                int height = static_cast<int>(data[3] * frame.rows);
+                int left = centerX - width / 2;
+                int top = centerY - height / 2;
+
+                detectedClassIds.push_back(labelPoint.x);
+                detectedConfidences.push_back(static_cast<float>(confidencescore));
+                detectedBoxes.push_back(cv::Rect(left, top, width, height));
+            }
+        }
+    }
+
+  std::vector<int> indices;
+  cv::dnn::NMSBoxes(detectedBoxes, detectedConfidences, confidenceThreshold, nmsThreshold,
+                    indices);
+  unsigned int personid = 1;
+  for (auto idx : indices) {
+    cv::Rect box = detectedBoxes[idx];
+    float dist = calculate_distance(box.height, frame.rows);
+    drawboxes(detectedClassIds[idx], detectedConfidences[idx], box.x, box.x + box.width,
+            box.y + box.height, frame, classes, personid, dist,box.y);
+    // transform.camera_robot_array(z_axis, box, frame);
+    std::cout << "Distance from camera  for person " << personid
+      << " is: " << dist << "m" << std::endl;
+    personid++;
+    bbox current_bbox;
+    current_bbox = std::make_tuple(detectedClassIds[idx], detectedConfidences[idx], box);
+    bboxes.push_back(current_bbox);
+  }
+  return bboxes;
 }
 
 /**
