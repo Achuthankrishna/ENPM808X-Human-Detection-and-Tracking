@@ -35,7 +35,7 @@ class Detector{
     unsigned int Height=640; ///< Height of the detection model.
     float confidenceThreshold=0.6; ///< Confidence threshold for human detection.
     std::vector<std::string> classes; ///< List of classes for human detection.
-    cv::dnn::Net network; ///< The neural network model for human detection.
+
     std::unordered_map<int, cv::Scalar> colorMap; // Map pid to color
 
 
@@ -45,7 +45,7 @@ class Detector{
     std::string model_Wts="./cfg/yolov3.weights";
     std::string c_path="./cfg/coco.names";
     using bbox = std::tuple<int, float, cv::Rect>;
-
+    cv::dnn::Net network; ///< The neural network model for human detection.
 
     /**
      * @brief Constructor for Detector object
@@ -98,17 +98,17 @@ class Detector{
       std::vector<std::string> ClassNames(const cv::dnn::Net& network);
     /**
      * @brief Detector method to implement detection
-     * 
-     * @param cv_frame 
-     * @return std::pair<cv::Mat, std::vector<Detector::bbox>> 
+     *
+     * @param cv_frame
+     * @return std::pair<cv::Mat, std::vector<Detector::bbox>>
      */
     std::pair<cv::Mat, std::vector<Detector::bbox>>  detector(const cv::Mat& cv_frame);
     /**
      * @brief Method to calculate distance
-     * 
-     * @param boxh 
-     * @param frameh 
-     * @return float 
+     *
+     * @param boxh
+     * @param frameh
+     * @return float
      */
     float calculate_distance(int boxh,int frameh);
 
