@@ -75,7 +75,15 @@ void Detector::load_model(std::string model_Cfg, std::string model_Wts) {
  * @param net The neural network model.
  * @return vector<String> A vector of class names.
  */
-vector<String> Detector::ClassNames(const Net& net) {
+std::vector<String> Detector::ClassNames(const Net& net) {
+    std::vector<std::string> names;
+    std::vector<int> outLayers = network.getUnconnectedOutLayers();
+    std::vector<std::string> layersNames = network.getLayerNames();
+    names.resize(outLayers.size());
+    for (size_t i = 0; i < outLayers.size(); ++i)
+        names[i] = layersNames[outLayers[i] - 1];
+
+    return names;
 }
 
 /**
