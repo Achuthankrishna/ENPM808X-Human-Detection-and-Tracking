@@ -28,8 +28,9 @@
  * @param model_Wts Path to the model weights file.
  */
 void Detector::load_model(std::string model_Cfg, std::string model_Wts, std::string c_path) {
-    model_Cfg="./cfg/yolov3.cfg";
-    model_Wts="./cfg/yolov3.weights";
+    model_Cfg="/home/ksp/Documents/ENPM808X/ENPM808X-Human-Detection-and-Tracking/cfg/yolov3.cfg";
+    model_Wts="/home/ksp/Documents/ENPM808X/ENPM808X-Human-Detection-and-Tracking/cfg/yolov3.weights";
+
 
     network=cv::dnn::readNetFromDarknet(model_Cfg,model_Wts);
 
@@ -279,3 +280,4 @@ void Detector::drawboxes(int classID, float con, int left, int right,
     putText(frame, label, cv::Point(left, textBottom), cv::FONT_HERSHEY_SIMPLEX, 0.75,
             cv::Scalar(0, 0, 0), 1);
 }
+
