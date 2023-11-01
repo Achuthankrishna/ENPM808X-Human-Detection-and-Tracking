@@ -144,24 +144,42 @@ std::vector<String> Detector::ClassNames(const Net& net) {
  */
 void Detector::drawboxes(int classID, float con, int left, int right,
                         int bottom, cv::Mat& frame,const std::vector<std::string> &classes,
-                        int pd, float z,int top) {
-    if (classID == 0) {
-        rectangle(frame, cv::Point(left, top), cv::Point(right, bottom),
-                  cv::Scalar(255, 178, 50), 3);
-
-        std::string label = cv::format("%.2f", con);
-        if (!classes.empty()) {
-            CV_Assert(classID < static_cast<int>(classes.size()));
-            label = "Distance: " + std::to_string(z) + " ID:" + std::to_string(pid);
-        }
-
-        int baseLine;
-        cv::Size labelSize = getTextSize(label, cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
-        int top = std::max(bottom, labelSize.height); // Changed 'top' to 'bottom'
-        rectangle(frame, cv::Point(left, bottom - round(1.5 * labelSize.height)),
-                  cv::Point(left + round(1.5 * labelSize.width), bottom + baseLine),
-                  cv::Scalar(255, 255, 255), cv::FILLED);
-        putText(frame, label, cv::Point(left, bottom), cv::FONT_HERSHEY_SIMPLEX, 0.75,
-                cv::Scalar(0, 0, 0), 1);
+                        int pid, float z,int top) {
+    if (classID != 0) {
+        return; // Skip non-human detections
     }
+
+
+    // Check if this pid already has a color assigned
+    cv::Scalar color;
+    auto colorIt = colorMap.find(pid);
+    if (colorIt != colorMap.end()) {
+        color = colorIt->second;
+    } else {
+        // Generate a unique color for the bounding box
+        cv::RNG rng(pid); // Initialize RNG with pid for consistent color generation
+        color = cv::Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+        colorMap[pid] = color; // Store the color for future use
+    }
+
+    // Draw a rectangle displaying the bounding box
+    rectangle(frame, cv::Point(left, top), cv::Point(right, bottom), color, 3);
+
+
+    // Get the label for the class name and its confidence
+    std::string label = cv::format("%.2f", con);
+    if (!classes.empty()) {
+        CV_Assert(classID < static_cast<int>(classes.size()));
+        label = "Distance: " + std::to_string(z) + " ID:" + std::to_string(pid);
+    }
+
+    // Display the label at the top of the bounding box
+    int baseLine;
+    cv::Size labelSize = getTextSize(label, cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
+    int textBottom = std::max(bottom, labelSize.height);
+    rectangle(frame, cv::Point(left, bottom - round(1.5 * labelSize.height)),
+              cv::Point(left + round(1.5 * labelSize.width), textBottom + baseLine),
+              cv::Scalar(255, 255, 255), cv::FILLED);
+    putText(frame, label, cv::Point(left, textBottom), cv::FONT_HERSHEY_SIMPLEX, 0.75,
+            cv::Scalar(0, 0, 0), 1);
 }
