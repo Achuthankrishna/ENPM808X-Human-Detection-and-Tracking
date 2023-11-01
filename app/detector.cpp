@@ -59,6 +59,79 @@ void Detector::load_model(std::string model_Cfg, std::string model_Wts) {
     while (std::getline(ifs, line)) classes.push_back(line);
 }
 }
+
+/**
+ * @brief Detector method to open camera and dectect
+ * 
+ * @param cv_frame 
+ * @return std::pair<cv::Mat, std::vector<Detector::bbox>> 
+ */
+
+std::pair<cv::Mat, std::vector<Detector::bbox>> Detector::detector(const cv::Mat& cv_frame) {
+    std::vector<Detector::bbox> allBoundingBoxes;
+    cv::Mat frame;
+
+        std::cout << "Opening Frame";
+        cv::VideoCapture cap;
+        cv::namedWindow("Camera Output", cv::WINDOW_NORMAL);
+        cap.open(0);
+
+        if (!cap.open(0)) { // Open the default camera (change the index if needed)
+            std::cout << "Error opening camera" << std::endl;
+            return std::make_pair(cv::Mat(), std::vector<Detector::bbox>());
+        }
+        else {
+            while (cap.isOpened()) {
+                cap.read(frame); // Capture a frame from the camera
+
+                if (frame.empty()) {
+                    std::cout << "Frame is empty. Exiting." << std::endl;
+                    break;
+                }
+
+                cv::Mat blob;
+                cv::dnn::blobFromImage(frame, blob, 1. / 255, cv::Size(Width, Height), cv::Scalar(), true, false);
+                network.setInput(blob);
+                std::vector<cv::Mat> output;
+
+                try {
+                    network.forward(output, network.getUnconnectedOutLayersNames());
+                } catch (const cv::Exception& e) {
+                    std::cerr << "Error during network forward pass: " << e.what() << std::endl;
+                    break;
+                }
+
+                std::vector<Detector::bbox> bbox = processing(frame, output);
+
+
+                allBoundingBoxes.insert(allBoundingBoxes.end(), bbox.begin(), bbox.end());
+
+                // Tracker tracker;
+
+                // // // // Call the humanTrack function using the "tracker" instance
+
+                // tracker.getPredictions(frame,bbox);
+                // tracker.humanTrack(frame);
+                // tracker.boundingBox(frame,bbox);
+
+                // std::vector<Detector::bbox> box = Tracker::humanTrack(frame);
+
+                // Rest of your processing code
+
+                cv::imshow("Camera Output", frame);
+
+                char key = cv::waitKey(10);
+                if (key == 'q') {
+                    break; // Press 'q' to exit the loop
+                }
+            }
+
+            cap.release(); // Release the camera
+        }
+    }
+
+    return std::make_pair(frame, allBoundingBoxes);
+}
 /**
  * @brief Preprocess the input frame for object detection.
  *
@@ -113,7 +186,13 @@ std::vector<std::tuple<int, float, cv::Rect>> Detector::processing(cv::Mat& fram
   }
   return bboxes;
 }
-
+/**
+ * @brief Calculating distance from camera to bbox
+ * 
+ * @param box_h 
+ * @param frame_h 
+ * @return float 
+ */
 float Detector::calculate_distance(int box_h, int frame_h) {
   int focal_l = 16;
   int sensor_h = 25;
