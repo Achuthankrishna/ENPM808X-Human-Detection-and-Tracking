@@ -15,7 +15,6 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include <opencv2/tracking.hpp>
-#include <opencv2/tracker.hpp>
 #include "../include/tracker.hpp"
 #include "../include/detector.hpp"
 /**
