@@ -39,15 +39,24 @@ void Tracker::getPredictions(cv::Mat& cv_frame, std::vector<int> get_boxes) {
     trackers= cv::MultiTracker::create();
     for(Detector::bbox get_box : get_boxes)
     {
-        trackers->add(cv::TrackerTLD::create(),cv_frame,cv::Rect2d(get_box));
+        trackers->add(cv::TrackerKCF::create(),cv_frame,cv::Rect2d(get_box));
         cv::RNG rng(0);
         colors.push_back(cv::Scalar(rng.uniform(0, 255), rng.uniform(0, 255),
                                 rng.uniform(0, 255)));
-
-
     }
 }
-
+/**
+ * @brief Get coordinates to initialise tracker wrt robot frames
+ * 
+ * @return std::vector<float> 
+ */
+std::vector<float> Tracker::getCoordinates() {
+  std::vector<float> coordinates;
+  coordinates.push_back(pose.at<float>(0, 3));
+  coordinates.push_back(pose.at<float>(1, 3));
+  coordinates.push_back(pose.at<float>(2, 3));
+  return coordinates;
+}
 /**
  * @brief Method to construct bounding box using frame obtained
  *

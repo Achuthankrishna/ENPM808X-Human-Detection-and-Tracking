@@ -15,9 +15,8 @@
 #include <vector>
 #include <iostream>
 #include <opencv2/opencv.hpp>
-#include <opencv2/core/ocl.hpp>
 #include <opencv2/tracking.hpp>
-
+#include "../include/detector.hpp"
 
 using namespace std;
 
@@ -29,7 +28,10 @@ class Tracker {
 
  private:
 
-    std::vector<int> get_boxes;
+      std::vector<Detector::bbox> get_boxes; 
+    cv::Ptr<cv::MultiTracker> trackers;
+    std::vector<cv::Scalar> colors;
+
 
 
  public:
@@ -76,4 +78,11 @@ class Tracker {
      * @param get_boxes Detected bounding box from the input frame.
      */
     void getPredictions(cv::Mat& cv_frame, std::vector<int> get_boxes);
+    /**
+     * @brief Get the Coordinates object
+     * 
+     * @return std::vector<float> 
+     */
+    std::vector<float> getCoordinates();
+
 };
