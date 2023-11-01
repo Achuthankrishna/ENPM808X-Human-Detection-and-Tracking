@@ -11,7 +11,7 @@
  */
 TEST(DetectorTest, LoadModelTest) {
     Detector detector;
-    detector.load_model("model_Cfg", "model_Wts", "c_path");
+    detector.load_model("../cfg/yolov3.cfg", "../cfg/yolov3.weights", "../cfg/coco.names");
     // Check if the model is loaded successfully
     ASSERT_FALSE(detector.network.empty());
 }
@@ -52,7 +52,7 @@ TEST(DetectorTest, ImageProcessing) {
     Detector detector;
 
     // Load your model, etc.
-    detector.load_model("model_Cfg", "model_Wts", "c_path");
+    detector.load_model("../cfg/yolov3.cfg", "../cfg/yolov3.weights", "../cfg/coco.names");
 
     // Load an input image for processing
     cv::Mat inputImage = cv::imread("test_detect.jpg");
