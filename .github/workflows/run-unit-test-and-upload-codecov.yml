@@ -11,33 +11,23 @@
 #
 # version 1.1
 ##############################################################################
-
 name: Run Unit Test and Upload Coverage Report
 
 on:
-  # Triggered whenever push to main
   push:
     branches: [ "main" ]
-
-  # Triggered whenever a pull request is created on main
   pull_request:
     branches: [ "main" ]
     types: [opened]
-
-  # Allow manual trigger
   workflow_dispatch:
 
 jobs:
   build-run-upload:
-    # Create a container of the latest Ubuntu, other values could be
-    # ubuntu-latest, ubuntu-22.04, etc.
     runs-on: ubuntu-22.04
 
     steps:
-      # We want to use GitHub CI checkout version 3 to check out our branch
       - uses: actions/checkout@v3
 
-      # Install some system pacakges
       - name: Install build packages
         run: |
           sudo apt update
@@ -47,59 +37,60 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev  
-      # - name: install opencv
-      #   run: |
-      #       sudo apt-get install libopencv-dev
-      #       sudo apt-get install libopencv-contrib-dev
-      # - name: Clone and build OpenCV from source
-      #   run: |
-      #       git clone https://github.com/opencv/opencv.git
-      #       cd opencv
-      #       mkdir build
-      #       cd build
-      #       cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
-      #       make -j$(nproc)
-      #       sudo make install
-      # Build, run unit test, and generate coverage report
-      # Install OpenCV
-      - name: install opencv 
+
+      - name: Set up OpenCV
+        id: opencv
+        run: |
+          echo "::set-output name=cache-key::opencv-4.5.0-cuda-off"
+
+      - name: Restore Cache
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/work/ENPM808X-Human-Detection-and-Tracking/ENPM808X-Human-Detection-and-Tracking/opencv/build
+          key: ${{ steps.opencv.outputs.cache-key }}
+      
+      - name: Install OpenCV
         run: |   
-            ### For opencv
-            git clone https://github.com/opencv/opencv.git
-            cd opencv 
-            git checkout 4.5.0
-            cd ..
-            git clone https://github.com/opencv/opencv_contrib.git
-            cd opencv_contrib
-            git checkout 4.5.0
-            cd ..
-            cd opencv
-            mkdir build
-            cd build
-            cmake -D CMAKE_BUILD_TYPE=RELEASE \
-                  -D BUILD_EXAMPLES=OFF \
-                  -D BUILD_opencv_apps=OFF \
-                  -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-                  -D BUILD_DOCS=OFF \
-                  -D BUILD_PERF_TESTS=OFF \
-                  -D BUILD_TESTS=OFF \
-                  -D WITH_CUDA=OFF \
-                  -D CMAKE_INSTALL_PREFIX=/usr/local ..
-                  
-            make 
-            sudo make install
-            sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
-            sudo ldconfig
-      - name: Configure CMake flags and build exectables
+          git clone https://github.com/opencv/opencv.git
+          cd opencv 
+          git checkout 4.5.0
+          cd ..
+          git clone https://github.com/opencv/opencv_contrib.git
+          cd opencv_contrib
+          git checkout 4.5.0
+          cd ..
+          cd opencv
+          mkdir build
+          cd build
+          cmake -D CMAKE_BUILD_TYPE=RELEASE \
+                -D BUILD_EXAMPLES=OFF \
+                -D BUILD_opencv_apps=OFF \
+                -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+                -D BUILD_DOCS=OFF \
+                -D BUILD_PERF_TESTS=OFF \
+                -D BUILD_TESTS=OFF \
+                -D WITH_CUDA=OFF \
+                -D CMAKE_INSTALL_PREFIX=/usr/local ..
+          make 
+          sudo make install
+          sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
+          sudo ldconfig
+
+      - name: Configure CMake flags and build executables
         run: |
           cmake -D WANT_COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug -S ./ -B build/
           cmake --build build/ --clean-first --target all test_coverage
 
-      # Upload coverage result to CodeCov
+      - name: Save Cache
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/work/ENPM808X-Human-Detection-and-Tracking/ENPM808X-Human-Detection-and-Tracking/opencv/build
+          key: ${{ steps.opencv.outputs.cache-key }}
+
       - name: Upload coverage result to CodeCov
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ${{github.workspace}}/build/test_coverage.info
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
+          fail_ci_if_error: true
+          verbose: true
