@@ -24,7 +24,8 @@
  * @param get_boxes
  */
 void Tracker::getPredictions(cv::Mat& cv_frame, std::vector<Detector::bbox> get_boxes) {
-    trackers = cv::MultiTracker::create();
+    cv::Ptr<cv::MultiTracker> trackers = cv::MultiTracker::create();
+
     for (Detector::bbox get_box : get_boxes) {
         trackers->add(cv::TrackerCSRT::create(), cv_frame, cv::Rect2d(std::get<2>(get_box)));
         cv::RNG rng(0);
