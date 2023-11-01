@@ -59,5 +59,10 @@ class Robot{
      * @return A vector of Rectangles representing the tracked region.
      */
     std::vector<cv::Rect> boundingBox(cv::Rect& bbox);
+    /**
+     * @brief Human detection method
+     * 
+     */
 
+    void humanDetection();
 };
