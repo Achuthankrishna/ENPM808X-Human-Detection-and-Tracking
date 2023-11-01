@@ -96,17 +96,15 @@ class Detector{
      * @return A vector of class names for humans.
      */
       std::vector<std::string> ClassNames(const cv::dnn::Net& network);
-
-      /**
-       * @brief detector class calling the detector method for camera
-       * 
-       * @param cv_frame 
-       * @return std::pair<cv::Mat, std::vector<Detector::bbox>> 
-       */
-
+    /**
+     * @brief Detector method to implement detection
+     * 
+     * @param cv_frame 
+     * @return std::pair<cv::Mat, std::vector<Detector::bbox>> 
+     */
     std::pair<cv::Mat, std::vector<Detector::bbox>>  detector(const cv::Mat& cv_frame);
     /**
-     * @brief Distance calculation class
+     * @brief Method to calculate distance
      * 
      * @param boxh 
      * @param frameh 

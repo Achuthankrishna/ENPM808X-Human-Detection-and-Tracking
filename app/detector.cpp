@@ -10,8 +10,9 @@
  * @copyright Copyright (c) 2023
  *
  */
-#include " ../include/detector.hpp"
-
+#include "../include/camera.hpp"
+#include "../include/detector.hpp"
+#include "../include/tracker.hpp"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -19,19 +20,19 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 
+
 /**
  * @brief Load the YoloV5 Pretrained model on COCO.
  *
  * @param model_Cfg Path to the model configuration file.
  * @param model_Wts Path to the model weights file.
  */
-void Detector::load_model(std::string model_Cfg, std::string model_Wts) {
-    void Detector::load_model(std::string model_Cfg, std::string model_Wts, std::string c_path) {
-    model_Cfg="/home/achuthankrish/Desktop/ENPM/Midterm/ENPM808X-Human-Detection-and-Tracking/cfg/yolov3.cfg";
+void Detector::load_model(std::string model_Cfg, std::string model_Wts, std::string c_path) {
+    model_Cfg="./cfg/yolov3.cfg";
     model_Wts="./cfg/yolov3.weights";
 
     network=cv::dnn::readNetFromDarknet(model_Cfg,model_Wts);
-    
+
     if (network.empty()) {
     std::cerr << "Failed to load the neural network model." << std::endl;
     return;
@@ -40,23 +41,16 @@ void Detector::load_model(std::string model_Cfg, std::string model_Wts) {
     network.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
     network.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
 
-    //loading class paths
     std::ifstream ifs(c_path.c_str());
     std::string line;
     while (std::getline(ifs, line)) classes.push_back(line);
 }
-}
 
-/**
- * @brief Detector method to open camera and dectect
- * 
- * @param cv_frame 
- * @return std::pair<cv::Mat, std::vector<Detector::bbox>> 
- */
 
 std::pair<cv::Mat, std::vector<Detector::bbox>> Detector::detector(const cv::Mat& cv_frame) {
     std::vector<Detector::bbox> allBoundingBoxes;
     cv::Mat frame;
+
 
     if (!cv_frame.empty()) {
         frame = cv_frame.clone();  // Use the provided frame if not empty
@@ -76,6 +70,7 @@ std::pair<cv::Mat, std::vector<Detector::bbox>> Detector::detector(const cv::Mat
         cv::VideoCapture cap;
         cv::namedWindow("Camera Output", cv::WINDOW_NORMAL);
         cap.open(0);
+        cv::VideoWriter videoWriter("./human1.mp4", cv::VideoWriter::fourcc('a', 'v', 'c', '1'), 5, cv::Size(640, 480), true);
 
         if (!cap.open(0)) { // Open the default camera (change the index if needed)
             std::cout << "Error opening camera" << std::endl;
@@ -106,20 +101,21 @@ std::pair<cv::Mat, std::vector<Detector::bbox>> Detector::detector(const cv::Mat
 
 
                 allBoundingBoxes.insert(allBoundingBoxes.end(), bbox.begin(), bbox.end());
-
+                // if (std::get<0>(bbox[0])==0){
                 // Tracker tracker;
 
                 // // // // Call the humanTrack function using the "tracker" instance
 
                 // tracker.getPredictions(frame,bbox);
-                // tracker.humanTrack(frame);
-                // tracker.boundingBox(frame,bbox);
+                // std::vector<cv::Rect_<double>> regions = tracker.boundingBox(frame, bbox);
+                // tracker.humanTrack(frame,regions);
+                // }
 
-                // std::vector<Detector::bbox> box = Tracker::humanTrack(frame);
 
                 // Rest of your processing code
 
                 cv::imshow("Camera Output", frame);
+                videoWriter.write(frame);
 
                 char key = cv::waitKey(10);
                 if (key == 'q') {
@@ -133,6 +129,22 @@ std::pair<cv::Mat, std::vector<Detector::bbox>> Detector::detector(const cv::Mat
 
     return std::make_pair(frame, allBoundingBoxes);
 }
+
+
+
+float Detector::calculate_distance(int box_h, int frame_h) {
+  int focal_l = 16;
+  int sensor_h = 25;
+  int averageHeight=180;
+  // Conversion from pixels to milli-meter
+  double height_mm = (sensor_h * box_h) / frame_h;
+  // Calcuation to find distance of human from camera
+  // D = (H * F) / P
+  double z = (averageHeight * focal_l) / height_mm;
+  return (z / 100);
+}
+
+
 /**
  * @brief Preprocess the input frame for object detection.
  *
@@ -146,14 +158,14 @@ std::vector<std::tuple<int, float, cv::Rect>> Detector::processing(cv::Mat& fram
     std::vector<bbox> bboxes;
 
     for (size_t i = 0; i < output.size(); ++i) {
-        float* data = (float*)(output[i].data);
+        float* data = reinterpret_cast<float*>(output[i].data);
         for (int j = 0; j < output[i].rows; ++j, data += output[i].cols) {
             cv::Mat scores = output[i].row(j).colRange(5, output[i].cols);
-            cv::Point labelPoint;
-            double confidencescore;
-            cv::minMaxLoc(scores, 0, &confidence, 0, &labelPoint);
+            cv::Point classIdPoint;
+            double confidence;
+            cv::minMaxLoc(scores, 0, &confidence, 0, &classIdPoint);
 
-            if (confidencescore > confidenceThreshold) {
+            if (confidence > confidenceThreshold) {
                 int centerX = static_cast<int>(data[0] * frame.cols);
                 int centerY = static_cast<int>(data[1] * frame.rows);
                 int width = static_cast<int>(data[2] * frame.cols);
@@ -161,8 +173,8 @@ std::vector<std::tuple<int, float, cv::Rect>> Detector::processing(cv::Mat& fram
                 int left = centerX - width / 2;
                 int top = centerY - height / 2;
 
-                detectedClassIds.push_back(labelPoint.x);
-                detectedConfidences.push_back(static_cast<float>(confidencescore));
+                detectedClassIds.push_back(classIdPoint.x);
+                detectedConfidences.push_back(static_cast<float>(confidence));
                 detectedBoxes.push_back(cv::Rect(left, top, width, height));
             }
         }
@@ -174,12 +186,12 @@ std::vector<std::tuple<int, float, cv::Rect>> Detector::processing(cv::Mat& fram
   unsigned int personid = 1;
   for (auto idx : indices) {
     cv::Rect box = detectedBoxes[idx];
-    float dist = calculate_distance(box.height, frame.rows);
+    float z_axis = calculate_distance(box.height, frame.rows);
     drawboxes(detectedClassIds[idx], detectedConfidences[idx], box.x, box.x + box.width,
-            box.y + box.height, frame, classes, personid, dist,box.y);
+            box.y + box.height, frame, classes, personid, z_axis,box.y);
     // transform.camera_robot_array(z_axis, box, frame);
-    std::cout << "Distance from camera  for person " << personid
-      << " is: " << dist << "m" << std::endl;
+    std::cout << "Distance from person " << personid
+      << " is: " << z_axis << "m" << std::endl;
     personid++;
     bbox current_bbox;
     current_bbox = std::make_tuple(detectedClassIds[idx], detectedConfidences[idx], box);
@@ -187,30 +199,15 @@ std::vector<std::tuple<int, float, cv::Rect>> Detector::processing(cv::Mat& fram
   }
   return bboxes;
 }
-/**
- * @brief Calculating distance from camera to bbox
- * 
- * @param box_h 
- * @param frame_h 
- * @return float 
- */
-float Detector::calculate_distance(int box_h, int frame_h) {
-  int focal_l = 16;
-  int sensor_h = 25;
-  int averageHeight=180;
-  // Conversion from pixels to milli-meter
-  double height_mm = (sensor_h * box_h) / frame_h;
-  // Calcuation to find distance of human from camera
-  // D = (H * F) / P
-  double z = (averageHeight * focal_l) / height_mm;
-  return (z / 100);
-}
+
+
 /**
  * @brief Get a vector of class names from the neural network model.
  *
  * @param net The neural network model.
  * @return vector<String> A vector of class names.
  */
+
 std::vector<std::string> Detector::ClassNames(const cv::dnn::Net& network) {
     std::vector<std::string> names;
 
@@ -228,6 +225,7 @@ std::vector<std::string> Detector::ClassNames(const cv::dnn::Net& network) {
     return names;
 }
 
+
 /**
  * @brief Draw bounding boxes on the input frame using class information.
  *
@@ -238,12 +236,16 @@ std::vector<std::string> Detector::ClassNames(const cv::dnn::Net& network) {
  * @param bottom Bottom boundary of the bounding box.
  * @param frame Input frame to draw the bounding box on.
  */
+
+
 void Detector::drawboxes(int classID, float con, int left, int right,
                         int bottom, cv::Mat& frame,const std::vector<std::string> &classes,
                         int pid, float z,int top) {
     if (classID != 0) {
         return; // Skip non-human detections
     }
+
+
     // Check if this pid already has a color assigned
     cv::Scalar color;
     auto colorIt = colorMap.find(pid);
@@ -267,13 +269,13 @@ void Detector::drawboxes(int classID, float con, int left, int right,
         label = "Distance: " + std::to_string(z) + " ID:" + std::to_string(pid);
     }
 
-    // Display the label at the top of the bounding box
+    // Draw a rectangle displaying the bounding box
+    rectangle(frame, cv::Point(left, top), cv::Point(right, bottom), color, 3);
+
+    // Draw the label on top of the bounding box
     int baseLine;
     cv::Size labelSize = getTextSize(label, cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
-    int textBottom = std::max(bottom, labelSize.height);
-    rectangle(frame, cv::Point(left, bottom - round(1.5 * labelSize.height)),
-              cv::Point(left + round(1.5 * labelSize.width), textBottom + baseLine),
-              cv::Scalar(255, 255, 255), cv::FILLED);
+    int textBottom = std::max(top, labelSize.height);
     putText(frame, label, cv::Point(left, textBottom), cv::FONT_HERSHEY_SIMPLEX, 0.75,
             cv::Scalar(0, 0, 0), 1);
 }
