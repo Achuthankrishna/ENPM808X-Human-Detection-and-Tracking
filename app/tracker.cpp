@@ -89,7 +89,8 @@ std::vector<cv::Rect> boundingBox(const cv::Mat& cv_frame,
  */
 
 std::vector<cv::Rect> humanTrack(const cv::Mat& cv_frame) {
-        trackers->update(frame)
+    
+    trackers->update(frame)
     std::vector<Detector::bbox> updt;
     std::vector<cv::Rect2d> objects_list = trackers->getObjects();
   std::for_each(objects_list.begin(),objects_list.end(),[&updt](cv::Rect2d tracked_object){

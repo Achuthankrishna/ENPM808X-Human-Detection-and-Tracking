@@ -101,7 +101,7 @@ class Detector{
        * @return std::pair<cv::Mat, std::vector<Detector::bbox>> 
        */
 
-    std::pair<cv::Mat, std::vector<Detector::bbox>>  detector();
+    std::pair<cv::Mat, std::vector<Detector::bbox>> detector();
     /**
      * @brief Calculate distance
      * 
