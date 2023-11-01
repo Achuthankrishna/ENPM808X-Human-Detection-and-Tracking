@@ -28,10 +28,6 @@
  * @param model_Wts Path to the model weights file.
  */
 void Detector::load_model(std::string model_Cfg, std::string model_Wts, std::string c_path) {
-    model_Cfg="/home/ksp/Documents/ENPM808X/ENPM808X-Human-Detection-and-Tracking/cfg/yolov3.cfg";
-    model_Wts="/home/ksp/Documents/ENPM808X/ENPM808X-Human-Detection-and-Tracking/cfg/yolov3.weights";
-
-
     network=cv::dnn::readNetFromDarknet(model_Cfg,model_Wts);
 
     if (network.empty()) {
