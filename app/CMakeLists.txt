@@ -2,6 +2,9 @@
 add_executable(shell-app
   # list of source cpp files:
   main.cpp
+  camera.cpp
+  tracker.cpp
+  detector.cpp
   )
 
 # Any include directories needed to build this target.

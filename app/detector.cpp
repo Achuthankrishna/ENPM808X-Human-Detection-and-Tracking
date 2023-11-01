@@ -20,19 +20,6 @@
 #include <opencv2/imgproc.hpp>
 
 /**
- * @brief Construct a new Detector object
- *
- */
-Detector::Detector() {
-}
-/**
- * @brief Destroy the Detector object
- *
- */
-Detector::~Detector() {
-}
-
-/**
  * @brief Load the YoloV5 Pretrained model on COCO.
  *
  * @param model_Cfg Path to the model configuration file.
@@ -218,8 +205,6 @@ float Detector::calculate_distance(int box_h, int frame_h) {
   double z = (averageHeight * focal_l) / height_mm;
   return (z / 100);
 }
-
-
 /**
  * @brief Get a vector of class names from the neural network model.
  *
@@ -259,8 +244,6 @@ void Detector::drawboxes(int classID, float con, int left, int right,
     if (classID != 0) {
         return; // Skip non-human detections
     }
-
-
     // Check if this pid already has a color assigned
     cv::Scalar color;
     auto colorIt = colorMap.find(pid);
