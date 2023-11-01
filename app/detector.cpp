@@ -33,6 +33,33 @@ Detector::~Detector() {
 }
 
 /**
+ * @brief Load the YoloV5 Pretrained model on COCO.
+ *
+ * @param model_Cfg Path to the model configuration file.
+ * @param model_Wts Path to the model weights file.
+ */
+void Detector::load_model(std::string model_Cfg, std::string model_Wts) {
+    void Detector::load_model(std::string model_Cfg, std::string model_Wts, std::string c_path) {
+    model_Cfg="/home/achuthankrish/Desktop/ENPM/Midterm/ENPM808X-Human-Detection-and-Tracking/cfg/yolov3.cfg";
+    model_Wts="./cfg/yolov3.weights";
+
+    network=cv::dnn::readNetFromDarknet(model_Cfg,model_Wts);
+    
+    if (network.empty()) {
+    std::cerr << "Failed to load the neural network model." << std::endl;
+    return;
+    }
+    std::cout<<model_Wts;
+    network.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
+    network.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
+
+    //loading class paths
+    std::ifstream ifs(c_path.c_str());
+    std::string line;
+    while (std::getline(ifs, line)) classes.push_back(line);
+}
+}
+/**
  * @brief Preprocess the input frame for object detection.
  *
  * @param frame Input frame.
@@ -87,33 +114,18 @@ std::vector<std::tuple<int, float, cv::Rect>> Detector::processing(cv::Mat& fram
   return bboxes;
 }
 
-/**
- * @brief Load the YoloV5 Pretrained model on COCO.
- *
- * @param model_Cfg Path to the model configuration file.
- * @param model_Wts Path to the model weights file.
- */
-void Detector::load_model(std::string model_Cfg, std::string model_Wts) {
-    void Detector::load_model(std::string model_Cfg, std::string model_Wts, std::string c_path) {
-    model_Cfg="/home/achuthankrish/Desktop/ENPM/Midterm/ENPM808X-Human-Detection-and-Tracking/cfg/yolov3.cfg";
-    model_Wts="./cfg/yolov3.weights";
-
-    network=cv::dnn::readNetFromDarknet(model_Cfg,model_Wts);
-    
-    if (network.empty()) {
-    std::cerr << "Failed to load the neural network model." << std::endl;
-    return;
-    }
-    std::cout<<model_Wts;
-    network.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
-    network.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
-
-    //loading class paths
-    std::ifstream ifs(c_path.c_str());
-    std::string line;
-    while (std::getline(ifs, line)) classes.push_back(line);
+float Detector::calculate_distance(int box_h, int frame_h) {
+  int focal_l = 16;
+  int sensor_h = 25;
+  int averageHeight=180;
+  // Conversion from pixels to milli-meter
+  double height_mm = (sensor_h * box_h) / frame_h;
+  // Calcuation to find distance of human from camera
+  // D = (H * F) / P
+  double z = (averageHeight * focal_l) / height_mm;
+  return (z / 100);
 }
-}
+
 
 /**
  * @brief Get a vector of class names from the neural network model.
