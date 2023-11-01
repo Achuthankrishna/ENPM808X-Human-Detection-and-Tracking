@@ -48,6 +48,25 @@ void Detector::processing(Mat& frame, const vector<Mat> & output) {
  * @param model_Wts Path to the model weights file.
  */
 void Detector::load_model(std::string model_Cfg, std::string model_Wts) {
+    void Detector::load_model(std::string model_Cfg, std::string model_Wts, std::string c_path) {
+    model_Cfg="/home/achuthankrish/Desktop/ENPM/Midterm/ENPM808X-Human-Detection-and-Tracking/cfg/yolov3.cfg";
+    model_Wts="./cfg/yolov3.weights";
+
+    network=cv::dnn::readNetFromDarknet(model_Cfg,model_Wts);
+    
+    if (network.empty()) {
+    std::cerr << "Failed to load the neural network model." << std::endl;
+    return;
+    }
+    std::cout<<model_Wts;
+    network.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
+    network.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
+
+    //loading class paths
+    std::ifstream ifs(c_path.c_str());
+    std::string line;
+    while (std::getline(ifs, line)) classes.push_back(line);
+}
 }
 
 /**
