@@ -29,12 +29,13 @@ class Tracker {
  private:
 
     std::vector<Detector::bbox> get_boxes;
-    cv::Ptr<cv::MultiTracker> trackers;
+
     std::vector<cv::Scalar> colors;
 
 
 
  public:
+  cv::Ptr<cv::MultiTracker> trackers;
 
     /**
      * @brief Constructor of Tracker class
@@ -82,8 +83,8 @@ class Tracker {
     void getPredictions(cv::Mat& cv_frame, std::vector<Detector::bbox> get_boxes);
    /**
     * @brief Get the Coordinates object
-    * 
-    * @return std::vector<float> 
+    *
+    * @return std::vector<float>
     */
     std::vector<float> getCoordinates();
 };
