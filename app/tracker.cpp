@@ -71,7 +71,7 @@ std::vector<cv::Rect> boundingBox(const cv::Mat& cv_frame,
     for (unsigned i = 0; i < get_boxes.size(); i++) {
         std::cout << "ID: " << get_boxes[i].id << " Confidence: " << get_boxes[i].confidence << std::endl;
         cv::rectangle(cv_frame, get_boxes[i].box, colors[i], 2, 1);
-        std::string label = "Object " + std::to_string(i + 1);
+        std::string label = "Person " + std::to_string(i + 1);
         cv::putText(cv_frame, label, cv::Point(get_boxes[i].box.x, get_boxes[i].box.y),
                     cv::FONT_HERSHEY_SIMPLEX, 0.75, colors[i], 2);
 
