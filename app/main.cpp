@@ -25,5 +25,21 @@ int main() {
     std::vector<Detector::bbox> bboxs;
 
     Robot robot;
+    Detector detector;
+    detector.load_model(detector.model_Cfg,detector.model_Wts,detector.c_path);
+    std::pair<cv::Mat, std::vector<Detector::bbox>> result=detector.detector(emptyFrame);
+    cv::Mat frame = result.first;
+
+    std::vector<Detector::bbox> bbox = result.second;
+    Tracker tracker;
+    tracker.getPredictions(frame,bbox);
+    tracker.boundingBox(frame,bbox);
+
+
+
+
+
+    return 0;
+
 
 }
