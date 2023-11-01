@@ -10,9 +10,20 @@
  * @copyright Copyright (c) 2023
  *
  */
-// #include "../include/lib1.hpp"
+
+#include "../include/camera.hpp"
+#include "../include/detector.hpp"
+#include "../include/tracker.hpp"
+#include "../include/robot.hpp"
+
 
 int main() {
-    // dummy();
-    return 0;
+
+    float data[16] = {0, 0, -1, 0, 1, 0, 0, 0.5, 0, -1, 0, 0.5, 0, 0, 0, 1};
+    cv::Mat emptyFrame;
+    cv::VideoWriter videoWriter("human.avi", cv::VideoWriter::fourcc('X', 'V', 'I', 'D'), 30, cv::Size(640, 480), true);
+    std::vector<Detector::bbox> bboxs;
+
+    Robot robot;
+
 }
