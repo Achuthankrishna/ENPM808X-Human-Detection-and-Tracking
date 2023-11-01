@@ -7,6 +7,8 @@ add_executable(cpp-test
   ../app/camera.cpp
   test_detector.cpp
   ../app/detector.cpp
+  test_tracker.cpp
+  ../app/tracker.cpp
 
   )
 
