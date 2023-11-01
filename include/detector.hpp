@@ -97,7 +97,21 @@ class Detector{
      */
       std::vector<std::string> ClassNames(const cv::dnn::Net& network);
 
+      /**
+       * @brief detector class calling the detector method for camera
+       * 
+       * @param cv_frame 
+       * @return std::pair<cv::Mat, std::vector<Detector::bbox>> 
+       */
+
     std::pair<cv::Mat, std::vector<Detector::bbox>>  detector(const cv::Mat& cv_frame);
+    /**
+     * @brief Distance calculation class
+     * 
+     * @param boxh 
+     * @param frameh 
+     * @return float 
+     */
     float calculate_distance(int boxh,int frameh);
 
 
