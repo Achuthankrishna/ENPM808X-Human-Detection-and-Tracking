@@ -15,9 +15,9 @@
 #include <vector>
 #include <iostream>
 #include <opencv2/opencv.hpp>
-#include <opencv2/core/ocl.hpp>
 #include <opencv2/tracking.hpp>
-
+#include <opencv2/tracker.hpp>
+#include "../include/detector.hpp"
 
 using namespace std;
 
@@ -29,15 +29,22 @@ class Tracker {
 
  private:
 
-    std::vector<int> get_boxes;
+    std::vector<Detector::bbox> get_boxes;
+
+    std::vector<cv::Scalar> colors;
+
 
 
  public:
+  cv::Ptr<cv::MultiTracker> trackers;
 
     /**
      * @brief Constructor of Tracker class
      */
-    Tracker() {}
+      Tracker() {
+         // Initialize trackers and colors if necessary
+         trackers = cv::MultiTracker::create();
+     }
 
     /**
      * @brief Destructor of Tracker class
@@ -53,7 +60,7 @@ class Tracker {
      * @param get_boxes Bounding box information.
      * @return A vector of Rectangles representing the tracked regions.
      */
-    std::vector<cv::Rect> boundingBox(cv::Mat& cv_frame, std::vector<int> get_boxes);
+    std::vector<cv::Rect_<double>> boundingBox(const cv::Mat& cv_frame, const std::vector<Detector::bbox> get_boxes);
 
 
     /**
@@ -64,8 +71,7 @@ class Tracker {
      * @param cv_frame Input image frame.
      * @return A vector of Rectangles representing the tracked human object.
      */
-    std::vector<cv::Rect> humanTrack(cv::Mat& cv_frame);
-
+    std::vector<Detector::bbox> humanTrack(const cv::Mat& cv_frame,std::vector<cv::Rect_<double>> regions);
 
     /**
      * @brief Draw bounding boxes for the tracked human target.
@@ -75,5 +81,11 @@ class Tracker {
      * @param cv_frame Input image frame.
      * @param get_boxes Detected bounding box from the input frame.
      */
-    void getPredictions(cv::Mat& cv_frame, std::vector<int> get_boxes);
+    void getPredictions(cv::Mat& cv_frame, std::vector<Detector::bbox> get_boxes);
+   /**
+    * @brief Get the Coordinates object
+    *
+    * @return std::vector<float>
+    */
+    std::vector<float> getCoordinates();
 };

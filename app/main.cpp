@@ -10,9 +10,16 @@
  * @copyright Copyright (c) 2023
  *
  */
-// #include "../include/lib1.hpp"
+
+
+#include "../include/robot.hpp"
+
 
 int main() {
-    // dummy();
+
+Robot robot;
+    robot.humanDetection();
+
     return 0;
+
 }
