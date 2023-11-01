@@ -36,6 +36,16 @@ Tracker::~Tracker() {
  * @param get_boxes
  */
 void Tracker::getPredictions(cv::Mat& cv_frame, std::vector<int> get_boxes) {
+    trackers= cv::MultiTracker::create();
+    for(Detector::bbox get_box : get_boxes)
+    {
+        trackers->add(cv::TrackerTLD::create(),cv_frame,cv::Rect2d(get_box));
+        cv::RNG rng(0);
+        colors.push_back(cv::Scalar(rng.uniform(0, 255), rng.uniform(0, 255),
+                                rng.uniform(0, 255)));
+
+
+    }
 }
 
 /**
