@@ -71,6 +71,20 @@ std::pair<cv::Mat, std::vector<Detector::bbox>> Detector::detector(const cv::Mat
     std::vector<Detector::bbox> allBoundingBoxes;
     cv::Mat frame;
 
+    if (!cv_frame.empty()) {
+        frame = cv_frame.clone();  // Use the provided frame if not empty
+
+        cv::Mat blob;
+        cv::dnn::blobFromImage(frame, blob, 1. / 255, cv::Size(Width, Height), cv::Scalar(), true, false);
+        network.setInput(blob);
+        std::vector<cv::Mat> output;
+        network.forward(output, network.getUnconnectedOutLayersNames());
+
+        std::vector<Detector::bbox> bbox = processing(frame, output);
+
+        allBoundingBoxes.insert(allBoundingBoxes.end(), bbox.begin(), bbox.end());
+    }
+    else {
         std::cout << "Opening Frame";
         cv::VideoCapture cap;
         cv::namedWindow("Camera Output", cv::WINDOW_NORMAL);
