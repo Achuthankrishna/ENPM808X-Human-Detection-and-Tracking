@@ -55,7 +55,7 @@ if ( DOXYGEN_FOUND )
   set( DOXYGEN_DOT_GRAPH_MAX_NODES  100 )
   set( DOXYGEN_MAX_DOT_GRAPH_DEPTH  0 )
   set( DOXYGEN_DOT_TRANSPARENT      YES )
-  
+
   # Add OpenCV include directories
   include_directories(${OpenCV_INCLUDE_DIRS})
 else()
@@ -120,6 +120,7 @@ if(WANT_COVERAGE)
       "app/main.cpp"     # Unit test does not run app, so don't analyze it
       "*gtest*"          # Don't analyze googleTest code
       "/usr/include/*"   # Don't analyze system headers
+
     )
 
   # code coverage for the app (shell-app):
@@ -130,6 +131,7 @@ if(WANT_COVERAGE)
     EXCLUDE
     "test/test.cpp"    # App does not run unit test, so don't analyze it
     "test/main.cpp"    # App does not run unit test, so don't analyze it
+    "test/cameratest.cpp"
     )
   # target_link_libraries(shell-app ${OpenCV_LIBS})
 
