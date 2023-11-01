@@ -77,7 +77,9 @@ class Detector{
      * @param bottom Bottom boundary of the bounding box.
      * @param frame Frame to draw the bounding box on.
      */
-    void drawboxes(int classID, float con, int left, int right, int bottom, Mat& frame)
+    void drawboxes(int classID, float con, int left, int right,
+                        int bottom, cv::Mat& frame,const std::vector<std::string> &classes,
+                        int pd, float z,int top)
 
     /**
      * @brief Get the class names for human detection from the neural network model.
@@ -85,7 +87,7 @@ class Detector{
      * @param net The neural network model.
      * @return A vector of class names for humans.
      */
-    vector<Sting> ClassNames(const Net& net);
+    std::vector<std::Sting> ClassNames(const Net& net);
 
 
 }

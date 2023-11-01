@@ -97,5 +97,25 @@ std::vector<String> Detector::ClassNames(const Net& net) {
  * @param frame Input frame to draw the bounding box on.
  */
 void Detector::drawboxes(int classID, float con, int left, int right,
-                        int bottom, Mat& frame) {
+                        int bottom, cv::Mat& frame,const std::vector<std::string> &classes,
+                        int pd, float z,int top) {
+    if (classID == 0) {
+        rectangle(frame, cv::Point(left, top), cv::Point(right, bottom),
+                  cv::Scalar(255, 178, 50), 3);
+
+        std::string label = cv::format("%.2f", con);
+        if (!classes.empty()) {
+            CV_Assert(classID < static_cast<int>(classes.size()));
+            label = "Distance: " + std::to_string(z) + " ID:" + std::to_string(pid);
+        }
+
+        int baseLine;
+        cv::Size labelSize = getTextSize(label, cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
+        int top = std::max(bottom, labelSize.height); // Changed 'top' to 'bottom'
+        rectangle(frame, cv::Point(left, bottom - round(1.5 * labelSize.height)),
+                  cv::Point(left + round(1.5 * labelSize.width), bottom + baseLine),
+                  cv::Scalar(255, 255, 255), cv::FILLED);
+        putText(frame, label, cv::Point(left, bottom), cv::FONT_HERSHEY_SIMPLEX, 0.75,
+                cv::Scalar(0, 0, 0), 1);
+    }
 }
