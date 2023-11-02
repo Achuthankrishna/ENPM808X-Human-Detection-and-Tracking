@@ -31,6 +31,10 @@
  */
 void Detector::load_model(std::string model_Cfg,
                         std::string model_Wts, std::string c_path) {
+
+    model_Cfg="./cfg/yolov3.cfg";
+    model_Wts="./cfg/yolov3.weights";
+  
     network = cv::dnn::readNetFromDarknet(model_Cfg, model_Wts);
 
     if (network.empty()) {
