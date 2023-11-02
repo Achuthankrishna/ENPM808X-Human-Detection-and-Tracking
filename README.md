@@ -39,6 +39,17 @@ The "Human Tracker for Robots" project is a cutting-edge proposal presented to A
 | AIP                       | [link](https://docs.google.com/spreadsheets/d/1wyLYvweVdQvH0OAug5pCWzMBC9qM7BZ0RR3IT80mlfs/view?usp=sharing) |
 | Sprint Planning & Review  | [link](https://docs.google.com/document/d/19AnJ37ejykyBpvsanAm6y1-T90pdiGQ5QkVrfGozuNQ/view?usp=sharing) |
 
+## Demo
+Result on Video
+<p align="center">
+<img width="50%" alt="Result Video" src="https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/test_vid/video_result.gif">
+</p>
+
+Result using live camera
+<p align="center">
+<img width="50%" alt="Result Video" src="https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking/blob/main/test_vid/video_result_2.gif">
+</p>
+
 ## Compilation
 ```
 $ git clone https://github.com/Achuthankrishna/ENPM808X-Human-Detection-and-Tracking.git
