@@ -15,6 +15,24 @@
 // }
 
 /**
+ * @brief Test case for checking model weights.
+ */
+TEST(DetectorTest, Test_Model_Weights) {
+    Detector detector;
+    std::string path = "./cfg/yolov3.weights";
+    EXPECT_EQ(detector.model_Wts, path);
+}
+
+/**
+ * @brief Test case for checking model cfg.
+ */
+TEST(DetectorTest, Test_Model_Cfg) {
+    Detector detector;
+    std::string path = "./cfg/yolov3.cfg";
+    EXPECT_EQ(detector.model_Cfg, path);
+}
+
+/**
  * @brief Test case for calculating distance.
  */
 TEST(DetectorTest, CalculateDistanceTest) {
