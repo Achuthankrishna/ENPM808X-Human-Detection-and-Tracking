@@ -49,39 +49,13 @@ jobs:
           path: /home/runner/work/ENPM808X-Human-Detection-and-Tracking/ENPM808X-Human-Detection-and-Tracking/opencv/build
           key: ${{ steps.opencv.outputs.cache-key }}
       
-      - name: Install OpenCV
-        run: |   
-          git clone https://github.com/opencv/opencv.git
-          cd opencv 
-          git checkout 4.5.0
-          cd ..
-          git clone https://github.com/opencv/opencv_contrib.git
-          cd opencv_contrib
-          git checkout 4.5.0
-          cd ..
-          cd opencv
-          mkdir build
-          cd build
-          cmake -D CMAKE_BUILD_TYPE=RELEASE \
-                -D BUILD_EXAMPLES=OFF \
-                -D BUILD_opencv_apps=OFF \
-                -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-                -D BUILD_DOCS=OFF \
-                -D BUILD_PERF_TESTS=OFF \
-                -D BUILD_TESTS=OFF \
-                -D WITH_CUDA=OFF \
-                -D CMAKE_INSTALL_PREFIX=/usr/local ..
-          make 
-          sudo make install
-          sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
-          sudo ldconfig
-
       - name: Configure CMake flags and build executables
         run: |
           cmake -D WANT_COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug -S ./ -B build/
           cmake --build build/ --clean-first --target all test_coverage
 
       - name: Save Cache
+        if: success() # Save the cache only if the previous steps were successful
         uses: actions/cache@v2
         with:
           path: /home/runner/work/ENPM808X-Human-Detection-and-Tracking/ENPM808X-Human-Detection-and-Tracking/opencv/build
@@ -94,3 +68,4 @@ jobs:
           files: ${{github.workspace}}/build/test_coverage.info
           fail_ci_if_error: true
           verbose: true
+
